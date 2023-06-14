@@ -40,23 +40,23 @@ export default function SpiderWeb() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/jeonsePriceRatio`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/jeonsePriceRatio`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/hai`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/hai`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/unsoldHouse`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/unsoldHouse`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/pir`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/pir`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/priceChangeRate`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/priceChangeRate`, {
         withCredentials: true,
       }),
       axios.get(
-        `http://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
+        `https://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
         {
           withCredentials: true,
         }

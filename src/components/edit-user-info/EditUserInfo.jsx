@@ -22,7 +22,7 @@ export default function EditUserInfo() {
 
   const getAccessToken = () => {
     axios
-      .get(`http://reloading.co.kr/api/users/accesstoken`, {
+      .get(`https://reloading.co.kr/api/users/accesstoken`, {
         method: "GET",
         withCredentials: true,
       })
@@ -478,7 +478,7 @@ export default function EditUserInfo() {
 
   const authenticate = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/pwCheck`, {
+      .post(`https://reloading.co.kr/api/users/pwCheck`, {
         method: "POST",
         withCredentials: true,
         data: {
@@ -520,7 +520,7 @@ export default function EditUserInfo() {
 
   const dupIdToggle = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/idCheck`, {
+      .post(`https://reloading.co.kr/api/users/idCheck`, {
         // url: "/users/idCheck", // 안되는뎅
         method: "POST",
         withCredentials: true,
@@ -576,7 +576,7 @@ export default function EditUserInfo() {
 
   const dupNicknameToggle = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/nicknameCheck`, {
+      .post(`https://reloading.co.kr/api/users/nicknameCheck`, {
         // url: "/users/nickCheck", // 안되는뎅
         method: "POST",
         withCredentials: true,
@@ -652,7 +652,7 @@ export default function EditUserInfo() {
   const handleSubmit = () => {
     setLoading(true);
     axios
-      .post(`http://reloading.co.kr/api/users/editUserInfo`, {
+      .post(`https://reloading.co.kr/api/users/editUserInfo`, {
         method: "POST",
         withCredentials: true,
         data: {

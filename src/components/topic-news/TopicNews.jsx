@@ -37,7 +37,7 @@ export default function TopicNews() {
     if (!selectedKeyword) return;
     axios
       .get(
-        `http://reloading.co.kr/api/topicNews?keyword=${selectedKeyword}&selectedSort=${selectedSort}`,
+        `https://reloading.co.kr/api/topicNews?keyword=${selectedKeyword}&selectedSort=${selectedSort}`,
         {
           withCredentials: true,
         }

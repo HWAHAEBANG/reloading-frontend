@@ -27,13 +27,13 @@ export default function JeonsePriceRatio() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/jeonsePriceRatio`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/jeonsePriceRatio`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/JeonsePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/JeonsePriceIndexSeoul`, {
         withCredentials: true,
       }),
     ])

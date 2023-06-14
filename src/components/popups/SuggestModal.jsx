@@ -38,7 +38,7 @@ export default function SuggestModal({ onClose }) {
     if (result) {
       setLoading(true);
       axios
-        .post("http://reloading.co.kr/api/users/sendSuggest", {
+        .post("https://reloading.co.kr/api/users/sendSuggest", {
           withCredentials: true,
           data: {
             text: text, // 생략 가능하지만 혼동 방지를 위해서 비생략.

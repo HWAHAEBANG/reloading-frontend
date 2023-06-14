@@ -73,21 +73,21 @@ export default function AmountAndPrice() {
   useEffect(() => {
     Promise.all([
       axios.get(
-        `http://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
+        `https://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
         {
           withCredentials: true,
         }
       ),
       axios.get(
-        `http://reloading.co.kr/api/allCharts/transactionVolumeJeonseSeoul`,
+        `https://reloading.co.kr/api/allCharts/transactionVolumeJeonseSeoul`,
         {
           withCredentials: true,
         }
       ),
-      axios.get(`http://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/JeonsePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/JeonsePriceIndexSeoul`, {
         withCredentials: true,
       }),
     ])

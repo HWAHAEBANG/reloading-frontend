@@ -16,7 +16,7 @@ export default function ChartCard({
     navigate(`/allCharts/${id}`, { state: { data: data } });
 
     axios
-      .put(`http://reloading.co.kr/api/allCharts/viewCount`, {
+      .put(`https://reloading.co.kr/api/allCharts/viewCount`, {
         method: "PUT",
         withCredentials: true,
         data: {
@@ -61,7 +61,7 @@ export default function ChartCard({
     e.stopPropagation();
     if (userInfo.userInfo.id) {
       axios
-        .post(`http://reloading.co.kr/api/myCharts/add`, {
+        .post(`https://reloading.co.kr/api/myCharts/add`, {
           method: "POST",
           withCredentials: true,
           data: {

@@ -42,18 +42,18 @@ export default function Signal({ chartsData }) {
     setLoading(true);
     Promise.all([
       axios.get(
-        `http://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
+        `https://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
         {
           withCredentials: true,
         }
       ),
       axios.get(
-        `http://reloading.co.kr/api/allCharts/transactionVolumeJeonseSeoul`,
+        `https://reloading.co.kr/api/allCharts/transactionVolumeJeonseSeoul`,
         {
           withCredentials: true,
         }
       ),
-      axios.get(`http://reloading.co.kr/api/allCharts/priceChangeRate`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/priceChangeRate`, {
         withCredentials: true,
       }),
     ])

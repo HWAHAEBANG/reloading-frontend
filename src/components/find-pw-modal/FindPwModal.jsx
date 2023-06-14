@@ -29,7 +29,7 @@ export default function FindPwModal({ setModalToggle }) {
   const handleSend = () => {
     setLoading(true);
     axios
-      .post(`http://reloading.co.kr/api/users/sendFindPwEmail`, {
+      .post(`https://reloading.co.kr/api/users/sendFindPwEmail`, {
         method: "POST",
         withCredentials: true,
         data: {

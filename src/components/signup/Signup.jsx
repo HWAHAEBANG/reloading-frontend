@@ -408,7 +408,7 @@ export default function Signup() {
   //test zone ==========================================================
   const dupIdToggle = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/idCheck`, {
+      .post(`https://reloading.co.kr/api/users/idCheck`, {
         // url: "/users/idCheck", // 안되는뎅
         method: "POST",
         withCredentials: true,
@@ -464,7 +464,7 @@ export default function Signup() {
 
   const dupNicknameToggle = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/nicknameCheck`, {
+      .post(`https://reloading.co.kr/api/users/nicknameCheck`, {
         // url: "/users/nickCheck", // 안되는뎅
         method: "POST",
         withCredentials: true,
@@ -521,7 +521,7 @@ export default function Signup() {
   const handleSubmit = () => {
     setLoading(true);
     axios
-      .post(`http://reloading.co.kr/api/users/signup`, {
+      .post(`https://reloading.co.kr/api/users/signup`, {
         method: "POST",
         withCredentials: true,
         data: {

@@ -11,7 +11,7 @@ export default function ImportantNotificationPopup({ onClose }) {
   const [notification, setNotification] = useState();
   useEffect(() => {
     axios
-      .get(`http://reloading.co.kr/api/notification/notification`, {
+      .get(`https://reloading.co.kr/api/notification/notification`, {
         withCredentials: true,
       })
       .then((response) => {

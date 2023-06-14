@@ -34,17 +34,17 @@ export default function UnsoldHouse() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/unsoldHouse`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/unsoldHouse`, {
         withCredentials: true,
       }),
       axios.get(
-        `http://reloading.co.kr/api/allCharts/housePriceIndexAroundSeoul`,
+        `https://reloading.co.kr/api/allCharts/housePriceIndexAroundSeoul`,
         {
           withCredentials: true,
         }
       ),
       axios.get(
-        `http://reloading.co.kr/api/allCharts/JeonsePriceIndexAroundSeoul`,
+        `https://reloading.co.kr/api/allCharts/JeonsePriceIndexAroundSeoul`,
         {
           withCredentials: true,
         }

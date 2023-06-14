@@ -24,7 +24,7 @@ export default function MyCharts() {
   const [chartsData, setChartsData] = useState();
   useEffect(() => {
     axios
-      .get(`http://reloading.co.kr/api/myCharts`, {
+      .get(`https://reloading.co.kr/api/myCharts`, {
         method: "GET",
         withCredentials: true,
         params: {

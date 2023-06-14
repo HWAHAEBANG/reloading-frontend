@@ -62,7 +62,7 @@ export default function NavBar({
 
   const logout = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/logout`, {
+      .post(`https://reloading.co.kr/api/users/logout`, {
         method: "POST",
         withCredentials: true,
         data: {
@@ -82,7 +82,7 @@ export default function NavBar({
 
   const handleClickEmailUnactive = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/emailServiceDisabled`, {
+      .post(`https://reloading.co.kr/api/users/emailServiceDisabled`, {
         method: "POST",
         withCredentials: true,
         data: {
@@ -98,7 +98,7 @@ export default function NavBar({
 
   const handleClickEmailActive = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/emailServiceEnabled`, {
+      .post(`https://reloading.co.kr/api/users/emailServiceEnabled`, {
         method: "POST",
         withCredentials: true,
         data: {
@@ -117,7 +117,7 @@ export default function NavBar({
   const [visitorCnt, setVisitorCnt] = useState();
   useEffect(() => {
     axios
-      .get(`http://reloading.co.kr/api/users/visitorCnt`, {
+      .get(`https://reloading.co.kr/api/users/visitorCnt`, {
         withCredentials: true,
       })
       .then((response) => {

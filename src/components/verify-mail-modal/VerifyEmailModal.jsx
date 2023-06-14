@@ -55,7 +55,7 @@ export default function VerifyEmailModal({
     setCountdownDate(Date.now() + countdownTime);
     setLoading(true);
     axios
-      .post(`http://reloading.co.kr/api/users/sendEmail`, {
+      .post(`https://reloading.co.kr/api/users/sendEmail`, {
         method: "POST",
         withCredentials: true,
         data: {
@@ -96,7 +96,7 @@ export default function VerifyEmailModal({
 
   const handleVerify = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/verifyEmail`, {
+      .post(`https://reloading.co.kr/api/users/verifyEmail`, {
         method: "POST",
         withCredentials: true,
         data: {

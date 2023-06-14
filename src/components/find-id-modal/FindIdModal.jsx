@@ -29,7 +29,7 @@ export default function FindIdModal({ setModalToggle }) {
   const handleSend = () => {
     setLoading(true);
     axios
-      .post(`http://reloading.co.kr/api/users/sendFindIdEmail`, {
+      .post(`https://reloading.co.kr/api/users/sendFindIdEmail`, {
         method: "POST",
         withCredentials: true,
         data: {

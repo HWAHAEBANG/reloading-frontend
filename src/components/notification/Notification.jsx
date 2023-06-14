@@ -41,13 +41,13 @@ export default function Notification() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/notification/notification`, {
+      axios.get(`https://reloading.co.kr/api/notification/notification`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/notification/dataUpdateLog`, {
+      axios.get(`https://reloading.co.kr/api/notification/dataUpdateLog`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/notification/releaseNote`, {
+      axios.get(`https://reloading.co.kr/api/notification/releaseNote`, {
         withCredentials: true,
       }),
     ])

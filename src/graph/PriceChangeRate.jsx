@@ -26,7 +26,7 @@ export default function PriceChangeRate() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/priceChangeRate`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/priceChangeRate`, {
         withCredentials: true,
       }),
     ])

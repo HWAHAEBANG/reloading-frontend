@@ -10,7 +10,7 @@ export default function DataUpdateLogPopup({ onClose }) {
   const [dataUpdateLog, setDataUpdateLog] = useState();
   useEffect(() => {
     axios
-      .get(`http://reloading.co.kr/api/notification/dataUpdateLog`, {
+      .get(`https://reloading.co.kr/api/notification/dataUpdateLog`, {
         withCredentials: true,
       })
       .then((response) => {

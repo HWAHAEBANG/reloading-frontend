@@ -39,7 +39,7 @@ export default function ChartDetail() {
     const url = new URL(window.location.href);
     const urlPathName = url.pathname.split("/")[2];
     axios
-      .get(`http://reloading.co.kr/api/allCharts/chartDetail`, {
+      .get(`https://reloading.co.kr/api/allCharts/chartDetail`, {
         method: "GET",
         withCredentials: true,
         params: {

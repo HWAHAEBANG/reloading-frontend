@@ -51,7 +51,7 @@ export default function GlitchSplashScreen() {
 
   const handleSubmitId = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/idCheck`, {
+      .post(`https://reloading.co.kr/api/users/idCheck`, {
         // url: "/users/idCheck", // 안되는뎅
         method: "POST",
         withCredentials: true,
@@ -75,7 +75,7 @@ export default function GlitchSplashScreen() {
 
   const handleSubmitPw = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/pwCheck`, {
+      .post(`https://reloading.co.kr/api/users/pwCheck`, {
         method: "POST",
         withCredentials: true,
         data: {
@@ -118,7 +118,7 @@ export default function GlitchSplashScreen() {
   const getAccessToken = () => {
     // 해쉬 안받아오도록 리팩토링 요망
     axios
-      .get(`http://reloading.co.kr/api/users/accesstoken`, {
+      .get(`https://reloading.co.kr/api/users/accesstoken`, {
         method: "GET",
         withCredentials: true,
       })

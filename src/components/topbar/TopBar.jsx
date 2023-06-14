@@ -38,7 +38,7 @@ export default function TopBar({
 
   const logout = () => {
     axios
-      .post(`http://reloading.co.kr/api/users/logout`, {
+      .post(`https://reloading.co.kr/api/users/logout`, {
         withCredentials: true,
         data: {
           presentId: userInfo.userInfo.id,

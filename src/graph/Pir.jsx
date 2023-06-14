@@ -68,16 +68,16 @@ export default function Pir() {
   // 대박....
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/pir`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/pir`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/JeonsePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/JeonsePriceIndexSeoul`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/jeonsePriceRatio`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/jeonsePriceRatio`, {
         withCredentials: true,
       }),
     ])

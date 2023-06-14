@@ -51,13 +51,13 @@ export default function Hai() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/hai`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/hai`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
         withCredentials: true,
       }),
-      axios.get(`http://reloading.co.kr/api/allCharts/baseRateKorea`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/baseRateKorea`, {
         withCredentials: true,
       }),
     ])

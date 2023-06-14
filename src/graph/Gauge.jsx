@@ -34,22 +34,22 @@ export default function Gauge() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://reloading.co.kr/api/allCharts/hai`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/hai`, {
         withCredentials: true,
       }),
 
-      axios.get(`http://reloading.co.kr/api/allCharts/pir`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/pir`, {
         withCredentials: true,
       }),
 
       axios.get(
-        `http://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
+        `https://reloading.co.kr/api/allCharts/transactionVolumeSalesSeoul`,
         {
           withCredentials: true,
         }
       ),
 
-      axios.get(`http://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
+      axios.get(`https://reloading.co.kr/api/allCharts/housePriceIndexSeoul`, {
         withCredentials: true,
       }),
     ])

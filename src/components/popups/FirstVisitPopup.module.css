@@ -1,0 +1,198 @@
+.firstVisitPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 15px;
+  overflow: hidden;
+  animation-delay: 2s;
+  animation: boxExtend 0.5s forwards;
+}
+
+@keyframes boxExtend {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 500px;
+  }
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  border: 1px solid mediumaquamarine;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.title {
+  color: mediumaquamarine;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.subTitle {
+  font-size: 20px;
+}
+
+.subTitle span {
+  color: mediumaquamarine;
+}
+
+.question {
+  background-color: transparent;
+  color: black;
+  line-height: 35px;
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: 900;
+  animation-delay: 30s; /* 배포 후 속도에 따라 조절 ? 왜 안먹지 추후 확인*/
+  animation: textExtend1 0.5s forwards;
+}
+
+@keyframes textExtend1 {
+  0% {
+    height: 0px;
+  }
+  50% {
+    height: 35px;
+    background-color: rgb(147, 193, 178, 0.5);
+  }
+
+  60% {
+    height: 35px;
+    background: none;
+  }
+
+  70% {
+    height: 35px;
+    background-color: mediumaquamarine;
+  }
+
+  80% {
+    height: 35px;
+    background: none;
+  }
+
+  90% {
+    height: 35px;
+    background-color: mediumaquamarine;
+  }
+
+  100% {
+    height: 35px;
+    background-color: mediumaquamarine;
+  }
+}
+
+.description {
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.description span {
+  color: mediumaquamarine;
+}
+
+.btnList {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  border: 1px solid mediumaquamarine;
+  padding: 0 10px;
+  width: 120px;
+  height: 35px;
+  background-color: transparent;
+  color: aquamarine;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: aquamarine;
+  color: black;
+  font-weight: 700;
+}
+
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /*스타일입력*/
+  .firstVisitPopup {
+    width: 350px;
+  }
+
+  @keyframes boxExtend {
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 600px;
+    }
+  }
+
+  .inner {
+    padding: 15px;
+  }
+
+  .titleContainer {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .subTitle {
+    font-size: 15px;
+  }
+
+  .subTitle span {
+    color: mediumaquamarine;
+  }
+
+  .question {
+    font-size: 13px;
+  }
+
+  .description {
+    font-size: 12px;
+    line-height: 28px;
+  }
+
+  .btnList {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+
+  .btn {
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+  }
+}

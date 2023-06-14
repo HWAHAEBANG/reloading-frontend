@@ -1,0 +1,339 @@
+.mainContainer {
+  width: 100%;
+  height: 95%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.subContainer {
+  width: 100%;
+  height: 0%;
+  border-radius: 15px;
+  border: 1px solid mediumaquamarine;
+  animation: boxExtend 0.5s forwards;
+  /* overflow: hidden; */
+}
+
+@keyframes boxExtend {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+.inner {
+  position: relative;
+  height: 100%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  /* padding: 0 25px; */
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.searchArea {
+  width: 100%;
+  height: 50px;
+  display: flex;
+}
+
+.inputBox {
+  width: 90%;
+  border-radius: 10px 0 0 10px;
+  border: none;
+  font-size: 20px;
+  padding: 0 20px;
+  outline: none;
+  background-color: #fff;
+}
+
+.inputBtn {
+  width: 10%;
+  border-radius: 0 10px 10px 0;
+  border: none;
+  background-color: mediumaquamarine;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  padding-top: 4px;
+}
+
+.sortArea {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recommendBox {
+  margin: 20px 0 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+.recommendBox {
+  white-space: nowrap;
+}
+
+.recommend {
+  background-color: #fff;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.recommend:hover {
+  transform: scale(1.1);
+}
+
+.active {
+  background-color: mediumaquamarine;
+  font-weight: 700;
+}
+
+.resultArea {
+  overflow-y: scroll; /* 깔끔한 스크롤 조건 */
+  flex: 1; /* 깔끔한 스크롤 조건 */
+  padding: 0 10px;
+}
+
+.articlesContainer {
+  /* 깔끔한 스크롤 조건 */
+  display: flex;
+  flex-direction: column;
+}
+
+.articleContainer {
+  border-bottom: 1px solid #fff;
+  padding: 30px 10px;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.articleContainer:hover {
+  background-color: rgba(43, 146, 116, 0.25);
+}
+
+.articleTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: aquamarine;
+}
+
+.articlePubDate {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.articleDescription {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+  .inner {
+    position: relative;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .recommendBox {
+    padding: 0;
+  }
+
+  .recommend {
+    padding: 3px 20px;
+  }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+  .mainContainer {
+    padding: 10px;
+  }
+
+  .subContainer {
+    padding: 10px 20px;
+  }
+
+  .inner {
+    padding: 0px;
+  }
+
+  .searchArea {
+    height: 40px;
+  }
+
+  .inputBox {
+    font-size: 15px;
+  }
+
+  .sortArea {
+    padding: 5px 10px;
+  }
+
+  .recommendBox {
+    display: flex;
+    justify-content: left;
+    margin: 10px 0;
+    gap: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .recommendBox::-webkit-scrollbar {
+    display: none; /* Webkit Browsers */
+  }
+
+  .recommendBox > p {
+    display: none;
+  }
+
+  .recommend {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /*스타일입력*/
+  .mainContainer {
+    padding: 10px;
+  }
+
+  .subContainer {
+    padding: 10px 15px;
+  }
+
+  .inner {
+    padding: 0px;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding: 5px 0;
+  }
+
+  .searchArea {
+    height: 30px;
+  }
+
+  .inputBox {
+    font-size: 15px;
+    border-radius: 5px 0 0 5px;
+    padding-left: 10px;
+  }
+
+  .inputBtn {
+    line-height: 20px;
+    width: 15%;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .sortArea {
+    padding: 5px 0px;
+  }
+
+  .recommendBox {
+    display: flex;
+    justify-content: left;
+    margin: 5px 0;
+    padding: 5px 0;
+    gap: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .recommendBox::-webkit-scrollbar {
+    display: none; /* Webkit Browsers */
+  }
+
+  .recommendBox > p {
+    display: none;
+  }
+
+  .recommend {
+    font-size: 13px;
+    padding: 5px 16px;
+  }
+
+  .resultArea {
+    padding: 0px 5px;
+  }
+
+  .articleContainer {
+    padding: 20px 0px;
+  }
+
+  .articleTitle {
+    font-size: 15px;
+    font-weight: 700;
+    color: aquamarine;
+  }
+
+  .articlePubDate {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .articleDescription {
+    margin-top: 5px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}

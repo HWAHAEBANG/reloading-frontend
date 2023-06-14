@@ -1,0 +1,38 @@
+.mainContainer {
+  display: flex;
+  /* background-color: red; */
+  width: 100vw;
+  height: 100vh;
+  /* background-image: url(../public/image/back2.jpg); */
+  background: linear-gradient(
+    229deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(33, 36, 37, 1) 100%
+  );
+}
+
+.subContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  box-shadow: -10px 0px 80px -7px #000000, 10px 0px 13px -7px #000000,
+    -4px -4px 15px 7px rgba(0, 0, 0, 0);
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.showNavBar {
+  transform: perspective(200px) rotateY(-2deg) translate(300px) scale(0.95);
+}
+
+.popupBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

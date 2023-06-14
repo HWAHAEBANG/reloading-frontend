@@ -1,0 +1,53 @@
+.mainContainer {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  display: flex;
+}
+
+.mainContainer > .textBox {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 13px;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid mediumaquamarine;
+}
+
+.mainContainer:hover .textBox {
+  display: flex;
+}
+
+.visible {
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 13px;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid mediumaquamarine;
+}
+
+.text {
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.textBox p:nth-child(1),
+.visible p:nth-child(1) {
+  font-size: 14px;
+  color: rgb(147, 193, 178);
+  margin-bottom: 5px;
+}
+
+.mainContainer > .icon {
+  /* position: absolute; */
+  /* bottom: 0px; */
+  /* right: 3px; */
+  margin: 0 10px 0 5px;
+  cursor: pointer;
+}

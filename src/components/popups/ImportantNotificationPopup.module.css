@@ -1,0 +1,184 @@
+.importantNotificationPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 15px;
+  overflow: hidden;
+  animation-delay: 2s;
+  animation: boxExtend 0.5s forwards;
+}
+
+@keyframes boxExtend {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 500px;
+  }
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  border: 1px solid mediumaquamarine;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: end;
+}
+
+.title {
+  color: mediumaquamarine;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.koTitle {
+  font-size: 15px;
+  margin: 0 0 6px 5px;
+}
+
+.listContainer {
+  background-color: rgba(145, 185, 174, 0.25);
+  height: 320px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.listContainerInner {
+  padding: 10px 20px;
+}
+
+.notiTitle {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: mediumaquamarine;
+  font-weight: 700;
+}
+
+.notiAuthor {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.notiDate {
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.notiDescripton {
+  font-size: 15px;
+  line-height: 30px;
+}
+
+.postScript {
+  margin: 10px;
+  font-size: 14px;
+}
+
+.btnList {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  border: 1px solid mediumaquamarine;
+  padding: 0 10px;
+  width: 120px;
+  height: 35px;
+  background-color: transparent;
+  color: aquamarine;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: aquamarine;
+  color: black;
+  font-weight: 700;
+}
+
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /*스타일입력*/
+  .importantNotificationPopup {
+    width: 350px;
+  }
+
+  @keyframes boxExtend {
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 550px;
+    }
+  }
+
+  .inner {
+    padding: 15px;
+  }
+
+  .titleContainer {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .postScript {
+    margin: 10px;
+    font-size: 12px;
+  }
+
+  .listContainer {
+    height: 320px;
+  }
+
+  .listContainerInner {
+    padding: 10px 20px;
+  }
+
+  .listContainerInner p {
+    font-size: 13px;
+    line-height: 25px;
+  }
+
+  .btnList {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+
+  .btn {
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+  }
+}

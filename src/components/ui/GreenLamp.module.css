@@ -1,0 +1,28 @@
+.signalContainer {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.signalContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  /* background-color: red; */
+  background: radial-gradient(
+    circle,
+    rgba(43, 223, 82, 0.6) 0%,
+    rgba(44, 114, 62, 0) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.greenSignal {
+  width: 100%;
+  height: 100%;
+}

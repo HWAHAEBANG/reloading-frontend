@@ -1,0 +1,485 @@
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.subContainer {
+  width: 100%;
+  height: 0%;
+  border-radius: 15px;
+  border: 1px solid mediumaquamarine;
+  animation: boxExtend 0.5s forwards;
+  display: flex;
+  overflow: hidden;
+}
+
+@keyframes boxExtend {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+/* =============================================================================== */
+/* =============================================================================== */
+
+.pictureArea {
+  width: 60%;
+  /* background-color: aqua; */
+  display: flex;
+  align-items: center;
+}
+
+.pictureContainer {
+  /* 반응형 손볼 때 가장 먼저 건드릴 것 */
+  position: relative;
+  width: 100%;
+  height: 800px;
+  /* background-color: red; */
+}
+
+.pngScope {
+  top: 300px;
+  left: 300px;
+  position: absolute;
+  width: 300px;
+}
+
+.scopeBox {
+  z-index: -1;
+  position: absolute;
+  top: -250px;
+  left: -250px;
+  animation: move 20s forwards;
+}
+
+@keyframes move {
+  0% {
+    top: -250px;
+    left: -250px;
+  }
+  4% {
+    top: -250px;
+    left: -250px;
+  }
+  5% {
+    top: -250px;
+    left: 580px;
+  }
+  9% {
+    top: -250px;
+    left: 580px;
+  }
+  10% {
+    top: 250px;
+    left: 50px;
+  }
+  14% {
+    top: 250px;
+    left: 50px;
+  }
+  15% {
+    top: 250px;
+    left: 580px;
+  }
+  19% {
+    top: 250px;
+    left: 580px;
+  }
+  20% {
+    top: 0px;
+    left: -250px;
+  }
+  24% {
+    top: 0px;
+    left: -250px;
+  }
+  25% {
+    top: 0px;
+    left: 150px;
+  }
+  28% {
+    top: 0px;
+    left: 150px;
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(2.5);
+    top: -700px;
+    left: -500px;
+  }
+  100% {
+    transform: scale(2.5);
+    top: -700px;
+    left: -500px;
+  }
+}
+.scopeBox div:nth-child(1) {
+  position: absolute;
+  top: 599px;
+  width: 3000px;
+  height: 2000px;
+  background-color: black;
+}
+
+.scopeBox div:nth-child(2) {
+  position: absolute;
+  top: -699px;
+  left: -1000px;
+  width: 3000px;
+  height: 1000px;
+  background-color: black;
+}
+
+.scopeBox div:nth-child(3) {
+  position: absolute;
+  left: 599px;
+  width: 2000px;
+  height: 2000px;
+  background-color: black;
+}
+
+.scopeBox div:nth-child(4) {
+  position: absolute;
+  left: -1699px;
+  width: 2000px;
+  height: 2000px;
+  background-color: black;
+}
+
+.pngApartment {
+  width: 1300px;
+}
+
+.apartmentBox {
+  position: absolute;
+  width: 1200px;
+  height: 1000px;
+  z-index: -2;
+}
+
+/* ============================================================================================= */
+/* ============================================================================================= */
+
+.inputArea {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  padding: 50px 80px;
+  min-width: 375px;
+}
+
+.title {
+  font-size: 30px;
+  color: mediumaquamarine;
+  white-space: nowrap;
+  height: 50px;
+}
+
+.subTitle {
+  font-size: 12px;
+  color: rgb(199, 199, 199);
+  line-height: 50px;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.itemName {
+  position: relative;
+  color: rgb(199, 199, 199);
+}
+
+.alertMessage {
+  font-size: 10px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.passMessage {
+  font-size: 10px;
+  color: rgb(40, 230, 34);
+  margin-left: 10px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.capsLockMessage {
+  font-size: 10px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.wholeBox {
+  width: 100%;
+}
+
+.itemNameBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.itemInputBox {
+  display: flex;
+  align-items: center;
+}
+
+.dupBtn {
+  white-space: nowrap;
+  padding: 5px 10px;
+  margin-left: 10px;
+  background: none;
+  border: 1px solid mediumaquamarine;
+  color: mediumaquamarine;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.dupBtn:hover {
+  background-color: mediumaquamarine;
+  color: black;
+}
+
+.input {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid gray;
+  color: #fff;
+  padding: 5px;
+  outline: none;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+.filled {
+  border-bottom: 1px solid mediumaquamarine;
+}
+
+.at {
+  margin: 0 10px;
+}
+
+/* Input file 태그 커스텀 ==================================================================*/
+.filebox {
+  display: flex;
+}
+
+.filebox .uploadName {
+  display: inline-block;
+  height: 32px;
+  padding: 0 px;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  border-bottom: 1px solid gray;
+  width: 90%;
+  color: #999999;
+}
+
+.filebox label {
+  white-space: nowrap;
+  margin-left: 10px;
+  background: none;
+  border: 1px solid mediumaquamarine;
+  color: mediumaquamarine;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+  font-size: 13px;
+  width: 75px;
+  padding-right: 1.5%;
+}
+
+.filebox label span {
+  color: mediumaquamarine;
+}
+
+/* 위에 있는 투명의 라벨에 hover 했을 때 뒤에 버튼에 효가가 생기도록*/
+.filebox label:hover {
+  background-color: mediumaquamarine;
+}
+
+.filebox label:hover span {
+  color: black;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  color: mediumaquamarine;
+}
+/* =======================================================================================*/
+
+.agreeBox {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.agreeBox input {
+  margin: 0 20px;
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: mediumaquamarine;
+  border: none;
+  margin: 30px 0 20px 0;
+  padding: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.2;
+}
+
+.allFilled {
+  width: 100%;
+  background-color: mediumaquamarine;
+  border: none;
+  margin: 30px 0 20px 0;
+  padding: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.allFilled:hover {
+  filter: brightness(1.2);
+}
+.link {
+  text-align: center;
+  color: rgb(199, 199, 199);
+}
+
+.link * {
+  color: mediumaquamarine;
+  text-decoration: underline;
+}
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+  /* grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); */
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+  .subContainer {
+    width: 100%;
+  }
+
+  .inputArea {
+    overflow: scroll;
+    justify-content: start;
+    width: 100vw;
+  }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+  .mainContainer {
+    padding: 10px;
+  }
+
+  .subContainer {
+    width: 100%;
+  }
+
+  .inputArea {
+    padding: 30px;
+  }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); */
+  /*스타일입력*/
+
+  .mainContainer {
+    padding: 10px;
+  }
+
+  .subContainer {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: 25px;
+    height: 30px;
+    margin-bottom: 30px;
+  }
+
+  .subTitle {
+    display: none;
+  }
+
+  .pictureArea {
+    transform: translate(-75%, 0px);
+    z-index: -1;
+  }
+
+  .pictureContainer {
+    transform: scale(0.5);
+  }
+
+  .inputArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 30px;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+  }
+
+  .inputSection {
+    gap: 8px;
+  }
+
+  .link {
+    font-size: 12px;
+  }
+
+  .agreeBox {
+    font-size: 8px;
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: mediumaquamarine;
+  border: none;
+  margin: 15px 0 10px 0;
+  padding: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.2;
+}

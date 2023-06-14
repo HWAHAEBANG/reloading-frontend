@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "NanumSquare", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "NanumSquare", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+body,
+html {
+  z-index: -100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+@font-face {
+  font-family: "PixelCaps";
+  font-style: normal;
+  font-weight: 200;
+  src: local(※), url("/public/fonts/PixelCaps.ttf") format("truetype");
+}
+
+/* @font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+} */
+
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+
+/* / 스크롤바 커스텀 ==================================== */
+.scrollBar {
+  height: 510px;
+  overflow-y: scroll;
+}
+
+/* 아래의 모든 코드는 영역::코드로 사용 */
+.scrollBar::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: mediumaquamarine; /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+/* ============================================== */
+/* 드롭다운 커스텀 ================================ */
+/* 추후 컴포넌트로 모듈화할 예정 */
+/* reset */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* design */
+
+.selectbox {
+  margin: 150px auto;
+}
+
+.pl {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 12px 13px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: black;
+  background-color: #ffffff;
+  /* background: url(./img/Polygon_up.png) 93% no-repeat; 화살표 이미지 삽입 */
+  appearance: none;
+  text-align: left;
+}
+.pl:focus {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid mediumaquamarine;
+  box-sizing: border-box;
+  border-radius: 10px;
+  outline: 3px solid rgb(198, 251, 234);
+  border-radius: 10px;
+}
+
+.listbox {
+  z-index: 9;
+  position: absolute;
+  width: 120px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  margin-top: 9px;
+  display: none;
+}
+
+.list {
+  border: none;
+  color: black;
+  /* background-color: red; */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 7px 10px;
+  margin: 5px 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.list:hover {
+  background: rgb(198, 251, 234);
+  width: 95px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.visible {
+  display: block;
+}
+/* ============================================== */
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+  /* grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); */
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /*스타일입력*/
+  /* / 스크롤바 커스텀 ==================================== */
+  .scrollBar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  /* 아래의 모든 코드는 영역::코드로 사용 */
+  .scrollBar::-webkit-scrollbar {
+    display: none; /* Webkit Browsers */
+  }
+
+  /* ============================================== */
+  /* 드롭다운 커스텀 ================================ */
+  /* 추후 컴포넌트로 모듈화할 예정 */
+  /* reset */
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* design */
+  .selectbox {
+    margin: 150px auto;
+  }
+
+  .pl {
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+    padding: 5px 5px;
+  }
+
+  .listbox {
+    width: 90px;
+    padding: -30px;
+  }
+
+  .list {
+    font-size: 12px;
+    line-height: 8px;
+    padding: 7px 0px;
+  }
+
+  /* ============================================== */
+}

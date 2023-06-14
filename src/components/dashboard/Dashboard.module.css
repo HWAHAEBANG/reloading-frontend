@@ -1,0 +1,146 @@
+@keyframes boxExtend {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 95%;
+  }
+}
+
+.gridContainer {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  animation: boxExtend 0.5s forwards;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 15px;
+}
+
+.box {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
+  border: 1px solid mediumaquamarine;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.box:hover {
+  transform: scale(1.02);
+}
+
+.nonClick:hover {
+  transform: none;
+  cursor: auto;
+}
+
+/* x축: 10칸, y축: 10칸 */
+.box1 {
+  /* hai */
+  grid-column: 1 / 3;
+  grid-row: 1 / 6;
+}
+.box2 {
+  /* 스파이더 */
+  grid-column: 7/ 9;
+  grid-row: 1/6;
+}
+.box3 {
+  /* 게이지 */
+  grid-column: 9/ 11;
+  grid-row: 1/5;
+  /* padding-top: 40px; */
+}
+.box4 {
+  grid-column: 3 / 5;
+  grid-row: 1/3;
+}
+.box5 {
+  /* pir */
+  grid-column: 1 / 4;
+  grid-row: 6/11;
+}
+.box6 {
+  /* 거래량 */
+  grid-column: 3 / 5;
+  grid-row: 1 / 6;
+}
+.box7 {
+  /* 신호등 */
+  grid-column: 9 / 11;
+  grid-row: 5 /11;
+}
+.box8 {
+  /* 변동율 */
+  grid-column: 4 / 6;
+  grid-row: 6/11;
+}
+.box9 {
+  /* 미분양 */
+  grid-column: 6 / 9;
+  grid-row: 6/11;
+}
+.box10 {
+  /* 전세가율 */
+  grid-column: 5 / 7;
+  grid-row: 1/6;
+}
+
+/* 노트북 & 테블릿 가로 (해상도 1024px ~ 1279px)*/
+@media all and (min-width: 1024px) and (max-width: 1279px) {
+  /* 스타일 입력 */
+  .gridContainer {
+    display: block;
+    overflow: scroll;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+}
+
+/* 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /* 스타일 입력 */
+  .gridContainer {
+    display: block;
+    overflow: scroll;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+}
+
+/* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /* 스타일 입력 */
+  .gridContainer {
+    display: block;
+    overflow: scroll;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+}
+
+@media all and (max-width: 479px) {
+  .gridContainer {
+    display: block;
+    overflow: scroll;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,402 @@
+.mainContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: box-collapse 0.5s forwards;
+  animation-delay: 8s;
+  width: 500px;
+  height: 400px;
+  overflow: hidden;
+}
+/* ============================================================================= */
+.GrantText {
+  position: absolute;
+  opacity: 0;
+  letter-spacing: 5px;
+  animation: fade-in-out 2s forwards;
+  color: rgb(255, 118, 39);
+}
+/* ============================================================================= */
+.WelcomeText {
+  position: absolute;
+  opacity: 0;
+  animation: fade-in 1s forwards;
+  animation-delay: 1.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+/* ============================================================================= */
+
+.topText {
+  letter-spacing: 5px;
+  color: rgb(255, 118, 39);
+}
+
+.bottomText {
+  letter-spacing: 5px;
+  margin-top: 20px;
+  color: mediumaquamarine;
+}
+
+.standardBox {
+  position: relative;
+  /* background-color: red; */
+  border: 1px solid mediumaquamarine;
+  width: 0px;
+  height: 0px;
+  animation: standard-box-expand 0.4s forwards;
+  animation-delay: 2s;
+}
+
+.standardBox > .cross {
+  position: absolute;
+  font-size: 25px;
+  color: rgb(255, 118, 39);
+}
+
+.standardBox > .cross:nth-child(1) {
+  top: -13px;
+  left: -13px;
+}
+
+.standardBox > .cross:nth-child(2) {
+  top: -13px;
+  right: -13px;
+}
+
+.standardBox > .cross:nth-child(3) {
+  bottom: -20.5px;
+  left: -13px;
+}
+
+.standardBox > .cross:nth-child(4) {
+  bottom: -20.5px;
+  right: -13px;
+}
+
+.standardBox > .grid {
+  position: absolute;
+  border: 0.2px solid rgba(102, 205, 170, 0.3);
+  z-index: 1;
+}
+
+.standardBox > .grid:nth-child(5) {
+  top: 33.3%;
+  width: 100%;
+}
+
+.standardBox > .grid:nth-child(6) {
+  top: 66.6%;
+  width: 100%;
+}
+
+.standardBox > .grid:nth-child(7) {
+  left: 33.3%;
+  height: 100%;
+}
+
+.standardBox > .grid:nth-child(8) {
+  left: 66.6%;
+  height: 100%;
+}
+
+.outerBox {
+  position: absolute;
+  border: 1px solid rgba(102, 205, 170, 0.3);
+  animation: outer-box-expand 1s forwards;
+  animation-delay: 3s;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+.outerBox > .cross {
+  position: absolute;
+  font-size: 25px;
+  color: rgba(255, 118, 39, 0.4);
+}
+
+.outerBox > .cross:nth-child(1) {
+  top: -13px;
+  left: -13px;
+}
+
+.outerBox > .cross:nth-child(2) {
+  top: -13px;
+  right: -13px;
+}
+
+.outerBox > .cross:nth-child(3) {
+  bottom: -20.5px;
+  left: -13px;
+}
+
+.outerBox > .cross:nth-child(4) {
+  bottom: -20.5px;
+  right: -13px;
+}
+
+.subOuterBox {
+  position: absolute;
+  /* border: 1px solid red; */
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
+}
+
+.subOuterBox > span {
+  position: absolute;
+  display: flex;
+}
+
+.subOuterBox span:nth-child(1) {
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(102, 205, 170, 0.3);
+  animation: container-anim1 1s forwards;
+  animation-delay: 4s;
+}
+
+.subOuterBox span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 0;
+  background: rgba(102, 205, 170, 0.3);
+  animation: container-anim2 1s forwards;
+  animation-delay: 4s;
+}
+
+.subOuterBox span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(102, 205, 170, 0.3);
+  animation: container-anim1 1s forwards;
+  animation-delay: 4s;
+}
+
+.subOuterBox span:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 0;
+  background: rgba(102, 205, 170, 0.3);
+  animation: container-anim2 1s forwards;
+  animation-delay: 4s;
+}
+
+.innerBox {
+  position: absolute;
+  /* border: 2px solid red; */
+  overflow: hidden;
+  /* animation: inner-box-expand 0.3s forwards; */
+  animation-delay: 3.4s;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerBox span {
+  position: absolute;
+  display: flex;
+}
+
+.innerBox span:nth-child(1) {
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: mediumaquamarine;
+  animation: container-anim1 0.5s forwards;
+  animation-delay: 3s;
+}
+
+.innerBox span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 0;
+  background: mediumaquamarine;
+  animation: container-anim2 0.5s forwards;
+  animation-delay: 3s;
+}
+
+.innerBox span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: mediumaquamarine;
+  animation: container-anim1 0.5s forwards;
+  animation-delay: 3s;
+}
+
+.innerBox span:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background: mediumaquamarine;
+  animation: container-anim2 0.5s forwards;
+  animation-delay: 3s;
+}
+
+.avatarBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+  /* background: red; */
+  /* z-index: -1; */
+}
+
+.avatar {
+  width: 100%;
+  opacity: 0;
+  filter: saturate(0.3) hue-rotate(10deg);
+  animation: image-expand 0.5s forwards;
+  animation-delay: 3.3s;
+}
+
+/* ============================================================================= */
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+  /* grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); */
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  .GrantText {
+    transform: scale(0.7);
+  }
+}
+/* ============================================================================= */
+
+@keyframes fade-in-out {
+  0% {
+    /* opacity: 0; */
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    /* opacity: 0; */
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes box-collapse {
+  from {
+  }
+  to {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes standard-box-expand {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@keyframes outer-box-expand {
+  from {
+  }
+  to {
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+  }
+}
+
+@keyframes inner-box-expand {
+  from {
+  }
+  to {
+    border: 2px solid mediumaquamarine;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+  }
+}
+
+@keyframes image-expand {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* === */
+@keyframes container-anim1 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes container-anim2 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}

@@ -1,0 +1,279 @@
+.verifyEmailModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 0px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  z-index: 9;
+  border-radius: 10px;
+  animation: boxExtend 0.5s forwards;
+  overflow: hidden;
+}
+
+@keyframes boxExtend {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 430px;
+  }
+}
+
+.title {
+  line-height: 40px;
+  font-size: 20px;
+}
+
+.iconArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid mediumaquamarine;
+  border-bottom: 1px solid mediumaquamarine;
+  padding: 30px 0 20px 0;
+}
+
+.iconArea div {
+  font-size: 70px;
+}
+
+.explain {
+  font-size: 14px;
+}
+
+.explain span {
+  color: mediumaquamarine;
+}
+
+.sendArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.email {
+  font-size: 18px;
+}
+
+.helperText {
+  font-size: 10px;
+}
+
+.sendBtn {
+  font-size: 12px;
+  white-space: nowrap;
+  width: 80px;
+  height: 30px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  background: none;
+  border: 1px solid mediumaquamarine;
+  color: mediumaquamarine;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.sendBtn:hover {
+  background-color: mediumaquamarine;
+  color: black;
+}
+
+.inputArea {
+  padding: 0 10px;
+}
+
+.inputArea div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.inputBox {
+  flex: 1;
+  height: 30px;
+  line-height: 30px;
+  outline: none;
+  background: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.inputBoxDisabled {
+  background: rgb(151, 151, 151);
+}
+
+.confirmBtn {
+  font-size: 12px;
+  white-space: nowrap;
+  width: 80px;
+  height: 30px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  background: none;
+  border: 1px solid mediumaquamarine;
+  color: mediumaquamarine;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.confirmBtn:hover {
+  background-color: mediumaquamarine;
+  color: black;
+}
+
+.countDown {
+  font-size: 12px;
+  padding-left: 3px;
+}
+
+.resultSuccess {
+  font-size: 12px;
+  color: chartreuse;
+  font-weight: 700;
+  padding-left: 3px;
+}
+
+.resultFail {
+  font-size: 12px;
+  color: red;
+  font-weight: 700;
+  padding-left: 3px;
+}
+
+.closeBtn {
+  position: absolute;
+  left: 0;
+  bottom: 25px;
+  margin: 0 10%;
+  font-size: 12px;
+  white-space: nowrap;
+  width: 80%;
+  height: 30px;
+  padding: 5px 10px;
+  margin-top: 30px;
+  background: none;
+  border: 1px solid mediumaquamarine;
+  color: mediumaquamarine;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.closeBtn:hover {
+  background-color: mediumaquamarine;
+  color: black;
+}
+
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+  /* grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); */
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+  .verifyEmailModal {
+    width: 300px;
+  }
+
+  @keyframes boxExtend {
+    0% {
+      height: 0px;
+    }
+    100% {
+      height: 480px;
+    }
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .sendArea {
+    gap: 10px;
+    padding: 20px 7px;
+  }
+
+  .sendBtn {
+    padding: 5px 7px;
+  }
+
+  .email {
+    font-size: 13px;
+  }
+
+  .inputBox {
+    /* height: px; */
+    width: 100%;
+    line-height: 12px;
+    font-size: 12px;
+  }
+
+  .confirmBtn {
+    width: 40px;
+    padding: 5px 7px;
+  }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /*스타일입력*/
+  .verifyEmailModal {
+    width: 300px;
+  }
+
+  @keyframes boxExtend {
+    0% {
+      height: 0px;
+    }
+    100% {
+      height: 480px;
+    }
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .sendArea {
+    gap: 10px;
+    padding: 20px 7px;
+  }
+
+  .sendBtn {
+    padding: 5px 7px;
+  }
+
+  .email {
+    font-size: 13px;
+  }
+
+  .inputBox {
+    /* height: px; */
+    width: 100%;
+    line-height: 12px;
+    font-size: 12px;
+  }
+
+  .confirmBtn {
+    width: 40px;
+    padding: 5px 7px;
+  }
+}

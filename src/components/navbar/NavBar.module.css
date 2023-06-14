@@ -1,0 +1,335 @@
+.mainContainer {
+  position: absolute;
+  height: 100%;
+  width: 317px;
+  /* background-color: darkslategray; */
+  /* box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    -4px -4px 15px 7px rgba(0, 0, 0, 0); */
+  padding: 50px 40px 40px 40px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 20px;
+  display: none;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  gap: 20px;
+  overflow: auto;
+}
+
+.userInfoSection {
+  /* background-color: red; */
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userInfo p {
+  font-size: 12px;
+}
+
+.userInfo p span {
+  font-size: 20px;
+}
+
+.userInfo {
+  display: flex;
+}
+
+.buttonList {
+  display: flex;
+  justify-content: end;
+  font-size: 15px;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.buttonList div {
+  background-color: rgba(0, 0, 0, 0.7);
+  filter: invert();
+  padding: 3px 4px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  width: 50px;
+}
+
+.buttonList div:hover {
+  background-color: rgba(0, 0, 0);
+  cursor: pointer;
+}
+
+.avatarContainer {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.avatar {
+  width: 60px;
+}
+
+.alternativeAvartarIcon {
+  margin-right: 20px;
+  font-size: 60px;
+}
+
+.innerContainer {
+  display: flex;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuSection {
+  flex: 1;
+}
+
+.menuList {
+  margin-top: 15px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* background-color: aqua; */
+}
+
+.menuList:hover {
+  transform: translate(5px, 0);
+}
+
+.menuList:hover :first-child {
+  color: #44a9a8;
+}
+
+.menuList p {
+  margin-left: 20px;
+}
+
+.newContainer {
+  position: relative;
+  width: 10px;
+  height: 0;
+  background-color: red;
+}
+
+.new {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  font-size: 25px;
+  color: rgb(255, 118, 39);
+  transform: translate(30%, -50%);
+  animation: twinkling 1s infinite;
+}
+
+.menuList:hover .new {
+  /* 이거 없으면 list hover시 파란색을 바뀜 */
+  color: rgb(255, 118, 39);
+}
+
+@keyframes twinkling {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.5);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.otherLinkSection {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linkList:hover {
+  transform: scale(1.01);
+  transform-origin: left;
+}
+
+.linkList a {
+  margin-left: 10px;
+}
+
+.linkList:nth-child(2) :first-child {
+  color: rgb(202, 24, 24);
+}
+.linkList:nth-child(3) :first-child {
+  color: rgb(0, 152, 18);
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: end; /* 우측 끝 정렬 */
+  gap: 1rem; /* 라벨과 간격 조절 */
+  cursor: pointer;
+  font-size: 15px;
+}
+
+[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 1.25em;
+  width: 2.25em;
+  height: 1.25em;
+  transform: scale(1.5); /* 커스텀 : 사이즈는 이걸로 조절 */
+}
+
+[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transform: scale(0.8);
+  background-color: gray;
+  transition: left 250ms linear;
+}
+
+[type="checkbox"]:checked {
+  background-color: mediumaquamarine;
+  border-color: mediumaquamarine;
+}
+
+[type="checkbox"]:checked::before {
+  background-color: white;
+  left: 1em;
+}
+
+[type="checkbox"]:disabled {
+  border-color: lightgray;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="checkbox"]:disabled:before {
+  background-color: lightgray;
+}
+
+[type="checkbox"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="checkbox"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) solid tomato;
+}
+
+[type="checkbox"]:enabled:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+}
+
+/* Global CSS */
+/* body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+
+/* fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+} */
+
+/* 토글 스위치 끝 */
+/*로그아웃 ====== */
+.logoutBtn {
+  background: none;
+  padding: 5px 10px;
+  color: mediumaquamarine;
+  border: 1px solid mediumaquamarine;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: mediumaquamarine;
+  color: #000000;
+}
+
+.visitCntBox {
+  flex: 1;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.visitCntTitle {
+  font-size: 10px;
+  color: mediumaquamarine;
+}
+
+.visitCnt {
+  font-size: 12px;
+}
+
+.suggestBtn {
+  display: none;
+}
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  /*스타일입력*/
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  /*스타일입력*/
+  .suggestBtn {
+    display: block;
+    background: none;
+    padding: 5px 10px;
+    color: mediumaquamarine;
+    border: 1px solid mediumaquamarine;
+    cursor: pointer;
+    transition: 0.2s;
+    height: 27px;
+    width: 120px;
+    line-height: 16px;
+    margin: 0 25%;
+  }
+
+  .suggestBtn:hover {
+    background-color: mediumaquamarine;
+    color: #000000;
+  }
+}

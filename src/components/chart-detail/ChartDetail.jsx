@@ -65,7 +65,7 @@ export default function ChartDetail() {
             className={styles.backToList}
             onClick={backToList}
           />
-          <div className={styles.inner}>
+          <div className={`${styles.inner} scrollBar`}>
             <div className={styles.chartArea}>
               <Suspense fallback={<div>Loading...</div>}>
                 <Component />
@@ -73,9 +73,10 @@ export default function ChartDetail() {
             </div>
             <div
               className={
-                chartsData.youtubeUrl
-                  ? styles.desciptionArea
-                  : styles.noYoutubeVerMobile
+                styles.desciptionArea
+                // chartsData.youtubeUrl
+                //   ? styles.desciptionArea
+                //   : styles.noYoutubeVerMobile
               }
             >
               <div

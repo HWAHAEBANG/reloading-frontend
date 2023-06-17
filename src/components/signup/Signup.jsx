@@ -64,7 +64,6 @@ export default function Signup() {
     nicknameRegex: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
   };
 
-  // 조건에 부합할 경우 초록글씨 경고
   const [capsLockMessage, setCapsLockMessage] = useState({
     pw: "",
     pwCheck: "",

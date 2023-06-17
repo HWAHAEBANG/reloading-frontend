@@ -92,16 +92,23 @@ export default function EditUserInfo() {
     nicknameRegex: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
   };
 
+  const [capsLockMessage, setCapsLockMessage] = useState({
+    pw: "",
+    pwCheck: "",
+  });
+
   const detectCapsLock = (e) => {
     if (e.getModifierState("CapsLock")) {
-      setAlertMessage((prevState) => ({
+      setCapsLockMessage((prevState) => ({
         ...prevState,
+        currentPw: "CAPS LOCK이 켜져 있습니다.",
         pw: "CAPS LOCK이 켜져 있습니다.",
         pwCheck: "CAPS LOCK이 켜져 있습니다.",
       }));
     } else {
-      setAlertMessage((prevState) => ({
+      setCapsLockMessage((prevState) => ({
         ...prevState,
+        currentPw: "",
         pw: "",
         pwCheck: "",
       }));
@@ -371,6 +378,13 @@ export default function EditUserInfo() {
 
   // 입력 조건 (정규식)설명 텍스트
   const REGEX_INFO = {
+    id: [
+      "계정 정책",
+      "- 영문자로 시작",
+      "- 대/소문자 무관",
+      "- 영문자, 숫자, 하이픈(-), 언더바(_)를 사용 가능",
+      "- 3~20자 이내",
+    ],
     pw: [
       "비밀번호 정책",
       "- 최소 8자 이상",
@@ -717,7 +731,29 @@ export default function EditUserInfo() {
   }, [selectedSort]);
 
   const [showEditorModal, setShowEditorModal] = useState(false);
+  // =========================================================
+  const [visibleRegexInfo, setVisibleRegexInfo] = useState({
+    id: false,
+    pw: false,
+    nickname: false,
+  });
+  const handleVisibleRegexInfo = (e) => {
+    switch (e.target.name) {
+      case "id":
+        setVisibleRegexInfo(() => ({ id: true, pw: false, nickname: false }));
+        break;
+      case "pw":
+        setVisibleRegexInfo(() => ({ id: false, pw: true, nickname: false }));
+        break;
+      case "nickname":
+        setVisibleRegexInfo(() => ({ id: false, pw: false, nickname: true }));
+        break;
+      default:
+        setVisibleRegexInfo(() => ({ id: false, pw: false, nickname: false }));
+    }
+  };
 
+  // =========================================================
   return (
     <div className={styles.mainContainer}>
       <div className={styles.subContainer}>
@@ -738,6 +774,11 @@ export default function EditUserInfo() {
                 <label className={styles.itemName} htmlFor='id'>
                   ID
                 </label>
+                <RegexInfoBoxForSignup
+                  textArray={REGEX_INFO.id}
+                  visibleRegexInfo={visibleRegexInfo}
+                  name='id'
+                />
                 <span className={styles.alertMessage}>{alertMessage.id}</span>
                 <span className={styles.passMessage}>{passMessage.id}</span>
               </div>
@@ -757,6 +798,7 @@ export default function EditUserInfo() {
                   placeholder={
                     userInfo && userInfo.userInfo && userInfo.userInfo.id
                   }
+                  onFocus={handleVisibleRegexInfo}
                 />
               </div>
             </div>
@@ -772,6 +814,9 @@ export default function EditUserInfo() {
                 <span className={styles.passMessage}>
                   {passMessage.currentPw}
                 </span>
+                <span className={styles.capsLockMessage}>
+                  {capsLockMessage.currentPw}
+                </span>
               </div>
               <div className={styles.itemInputBox}>
                 <input
@@ -785,6 +830,8 @@ export default function EditUserInfo() {
                   name='currentPw'
                   value={inputValue.currentPw}
                   onChange={handleInputValue}
+                  onKeyDown={detectCapsLock}
+                  onFocus={handleVisibleRegexInfo}
                 />
                 <button className={styles.dupBtn} onClick={authenticate}>
                   본인 인증
@@ -802,9 +849,16 @@ export default function EditUserInfo() {
                 <label className={styles.itemName} htmlFor='pw'>
                   New Password
                 </label>
-                <RegexInfoBoxForSignup textArray={REGEX_INFO.pw} />
+                <RegexInfoBoxForSignup
+                  textArray={REGEX_INFO.pw}
+                  visibleRegexInfo={visibleRegexInfo}
+                  name='pw'
+                />
                 <span className={styles.alertMessage}>{alertMessage.pw}</span>
                 <span className={styles.passMessage}>{passMessage.pw}</span>
+                <span className={styles.capsLockMessage}>
+                  {capsLockMessage.pw}
+                </span>
               </div>
               <div className={styles.itemInputBox}>
                 <input
@@ -820,6 +874,7 @@ export default function EditUserInfo() {
                   onChange={handleInputValue}
                   onKeyDown={detectCapsLock}
                   disabled={!inputValue.authenticationStatus}
+                  onFocus={handleVisibleRegexInfo}
                 />
               </div>
             </div>
@@ -840,6 +895,9 @@ export default function EditUserInfo() {
                 <span className={styles.passMessage}>
                   {passMessage.pwCheck}
                 </span>
+                <span className={styles.capsLockMessage}>
+                  {capsLockMessage.pwCheck}
+                </span>
               </div>
               <div className={styles.itemInputBox}>
                 <input
@@ -855,6 +913,7 @@ export default function EditUserInfo() {
                   onChange={handleInputValue}
                   onKeyDown={detectCapsLock}
                   disabled={!inputValue.authenticationStatus}
+                  onFocus={handleVisibleRegexInfo}
                 />
               </div>
             </div>
@@ -886,6 +945,7 @@ export default function EditUserInfo() {
                     userInfo && userInfo.userInfo && userInfo.userInfo.name
                   }
                   disabled={!inputValue.authenticationStatus}
+                  onFocus={handleVisibleRegexInfo}
                 />
               </div>
             </div>
@@ -900,7 +960,11 @@ export default function EditUserInfo() {
                 <label className={styles.itemName} htmlFor='nickname'>
                   Nickname
                 </label>
-                <RegexInfoBoxForSignup textArray={REGEX_INFO.nickname} />
+                <RegexInfoBoxForSignup
+                  textArray={REGEX_INFO.nickname}
+                  visibleRegexInfo={visibleRegexInfo}
+                  name='nickname'
+                />
                 <span className={styles.alertMessage}>
                   {alertMessage.nickname}
                 </span>
@@ -924,6 +988,7 @@ export default function EditUserInfo() {
                     userInfo && userInfo.userInfo && userInfo.userInfo.nickname
                   }
                   disabled={!inputValue.authenticationStatus}
+                  onFocus={handleVisibleRegexInfo}
                 />
                 <button
                   className={styles.dupBtn}
@@ -969,6 +1034,7 @@ export default function EditUserInfo() {
                     userInfo.userInfo.email.split("@")[0]
                   }
                   disabled={!inputValue.authenticationStatus}
+                  onFocus={handleVisibleRegexInfo}
                 />
                 <span className={styles.at}>@</span>
                 <div className='selectBox'>

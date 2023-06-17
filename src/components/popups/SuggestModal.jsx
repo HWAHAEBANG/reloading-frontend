@@ -70,7 +70,7 @@ export default function SuggestModal({ onClose }) {
         <p className={styles.preScript}>
           소중한 시간을 내어 사이트를 방문에 주셔서 감사합니다.
           <br />
-          사이트를 이용하시면서 <span>불편하셨던 점</span>이나,{" "}
+          이용하시면서 <span>불편하셨던 점</span>이나,{" "}
           <span>새로 생겼으면 하시는 기능</span>이 있으시다면 하단에
           작성해주세요.
           <br />

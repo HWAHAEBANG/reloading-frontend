@@ -1,17 +1,34 @@
 import React from "react";
 import styles from "./FirstVisitPopup.module.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUserInfoAction } from "../../redux";
+import axios from "axios";
 
 export default function FirstVisitPopup({ onClose }) {
-  const userInfo = useSelector((state) => state.userInfo);
-
   const navigate = useNavigate();
 
   const handleNavigate = () => {
     navigate("/aboutUs");
     onClose(false);
   };
+  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. =======================================
+  // 이게 없을 경우 첫 방문시 새로고침 할때마다 모달이 뜸.
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
+
+  const confirm = () => {
+    // getAccessToken();
+    dispatch(
+      setUserInfoAction({
+        ...userInfo.userInfo,
+        today_visit_cnt: userInfo.userInfo.today_visit_cnt + 1,
+        total_visit_cnt: userInfo.userInfo.total_visit_cnt + 1,
+      })
+    );
+    onClose(false);
+  };
+  //=========================================================================================
 
   return (
     <div className={styles.firstVisitPopup}>
@@ -43,7 +60,7 @@ export default function FirstVisitPopup({ onClose }) {
           <button className={styles.btn} onClick={handleNavigate}>
             SEE MORE
           </button>
-          <button className={styles.btn} onClick={() => onClose(false)}>
+          <button className={styles.btn} onClick={confirm}>
             CLOSE
           </button>
         </div>

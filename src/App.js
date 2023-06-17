@@ -28,23 +28,32 @@ function App() {
   const userInfo = useSelector((state) => state.userInfo);
   const [isFirstVisitToday, setIsFirstVisitToday] = useState(
     // 이건 set 필요없음.
-    userInfo.userInfo.today_visit_cnt <= 1
+    userInfo.userInfo.today_visit_cnt === 1
   );
   const [isFirstVisitTotal, setIsFirstVisitTotal] = useState(
-    userInfo.userInfo.total_visit_cnt <= 1
+    userInfo.userInfo.total_visit_cnt === 1
   );
 
   //from DB
-  const today = new Date().toISOString().slice(0, 10);
+  // const today = new Date()
+  //   .toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
+  //   .slice(0, 10);
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
 
   const [hasTodayNotification, setHasTodayNotification] = useState();
   const [hasTodayDataUpdate, setHasTodayDataUpdate] = useState();
   useEffect(() => {
     Promise.all([
-      axios.get(`/api/notification/notification`, {
+      axios.get(`https://reloading.co.kr/api/notification/notification`, {
         withCredentials: true,
       }),
-      axios.get(`/api/notification/dataUpdateLog`, {
+      axios.get(`https://reloading.co.kr/api/notification/dataUpdateLog`, {
         withCredentials: true,
       }),
     ])
@@ -52,18 +61,22 @@ function App() {
         const notificationResponse = responses[0];
         const dataUpdateLogResponse = responses[1];
 
+        console.log("흠", notificationResponse);
+        console.log("좀", dataUpdateLogResponse);
+
         // 데이터 저장
         setHasTodayNotification(
           notificationResponse.data.data.some(
-            (item) => item.created_at.split("T")[0] === today
+            (item) => item.created_at.split("T")[0] === formattedDate
           )
         );
         setHasTodayDataUpdate(
           dataUpdateLogResponse.data.data.some(
-            (item) => item.created_at.split("T")[0] === today
+            (item) => item.created_at.split("T")[0] === formattedDate
           )
         );
-        // console.log("서버시간", new Date());
+        console.log("투데이", formattedDate);
+        console.log("서버시간", new Date());
         // console.log("확", notificationResponse.data.data);
         // console.log("인", dataUpdateLogResponse.data.data);
         // 추가 작업을 수행할 수 있습니다.
@@ -76,6 +89,11 @@ function App() {
       });
   }, []);
 
+  console.log("뭐가", hasTodayDataUpdate);
+  console.log("다를까용?", hasTodayNotification);
+
+  const serverTime = new Date();
+  console.log("시발시간", serverTime);
   //=======================================================================
 
   return (

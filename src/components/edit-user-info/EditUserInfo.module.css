@@ -82,6 +82,14 @@
   margin-left: 5px;
 }
 
+.capsLockMessage {
+  font-size: 10px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
 .wholeBox {
   width: 100%;
 }

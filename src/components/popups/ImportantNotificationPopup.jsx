@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ImportantNotificationPopup.module.css";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setUserInfoAction } from "../../redux";
 
 export default function ImportantNotificationPopup({ onClose }) {
-  const handleClose = () => {};
+  // const handleClose = () => {};
 
-  const today = new Date().toISOString().slice(0, 10);
-  console.log(today);
+  // const today = new Date().toISOString().slice(0, 10);
+  // console.log(today);
 
   const [notification, setNotification] = useState();
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function ImportantNotificationPopup({ onClose }) {
         if (response.data.length === 0) {
           return;
         } else {
-          setNotification(response.data.data[0]);
+          setNotification(response.data.data.slice(-1)[0]);
         }
       })
       .catch((error) => {
@@ -26,6 +28,23 @@ export default function ImportantNotificationPopup({ onClose }) {
       });
   }, []);
 
+  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. =======================================
+  // 이게 없을 경우 첫 방문시 새로고침 할때마다 모달이 뜸.
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
+
+  const confirm = () => {
+    // getAccessToken();
+    dispatch(
+      setUserInfoAction({
+        ...userInfo.userInfo,
+        today_visit_cnt: userInfo.userInfo.today_visit_cnt + 1,
+        total_visit_cnt: userInfo.userInfo.total_visit_cnt + 1,
+      })
+    );
+    onClose(false);
+  };
+  //=========================================================================================
   return (
     <div className={styles.importantNotificationPopup}>
       <div className={styles.inner}>
@@ -56,7 +75,7 @@ export default function ImportantNotificationPopup({ onClose }) {
           위 내용은 Notification 메뉴에서 다시 확인하실 수 있습니다.
         </p>
         <div className={styles.btnList}>
-          <button className={styles.btn} onClick={() => onClose(false)}>
+          <button className={styles.btn} onClick={confirm}>
             CLOSE
           </button>
         </div>

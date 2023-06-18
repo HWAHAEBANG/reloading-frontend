@@ -12,8 +12,6 @@ import MyChartsSection from "./pages/MyChartsSection";
 import TopicNewsSection from "./pages/TopicNewsSection";
 import LoginSection from "./pages/LoginSection";
 import SignupSection from "./pages/SignupSection";
-import FindIdSection from "./pages/FindIdSection";
-import FindPwSection from "./pages/FindPwSection";
 import EditUserInfoSection from "./pages/EditUserInfoSection";
 import ChartDetail from "./components/chart-detail/ChartDetail";
 import Access from "./components/splashScreen/Access";
@@ -77,14 +75,6 @@ const router = createBrowserRouter([
   {
     path: "/users/access",
     element: <Access />,
-  },
-  {
-    path: "/users/findId",
-    element: <FindIdSection />,
-  },
-  {
-    path: "/users/findPw",
-    element: <FindPwSection />,
   },
   {
     path: "/users/signup",

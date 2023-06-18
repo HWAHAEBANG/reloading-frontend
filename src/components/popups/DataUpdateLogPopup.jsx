@@ -5,19 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserInfoAction } from "../../redux";
 
 export default function DataUpdateLogPopup({ onClose }) {
-  const handleClose = () => {};
-
-  // const today = new Date()
-  //   .toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
-  //   .slice(0, 10);
-
+  // 오늘 날짜를 YYYY-MM=DD 형태로 파싱=================================================================================
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
 
   const formattedDate = `${year}-${month}-${day}`;
+  // ================================================================================================================
 
+  // 업데이트 이력 데이터를 가져와서 오늘 날짜에 해당하는 것만 상태에 담기 ================================================
   const [dataUpdateLog, setDataUpdateLog] = useState();
   useEffect(() => {
     axios
@@ -28,7 +25,7 @@ export default function DataUpdateLogPopup({ onClose }) {
         if (response.data.length === 0) {
           return;
         } else {
-          //  데이터 업데이트 로그 파싱 로직 =======================================================
+          //  데이터 업데이트 로그 파싱 로직 =====================================
           const logList = response.data.data;
 
           let insertNo = 0;
@@ -53,15 +50,16 @@ export default function DataUpdateLogPopup({ onClose }) {
               (item) => item.date === formattedDate
             )
           );
-          // ==================================================================================
+          // ===================================================================
         }
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+  // ================================================================================================================
 
-  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. =======================================
+  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. ================================================================
   // 이게 없을 경우 첫 방문시 새로고침 할때마다 모달이 뜸.
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
@@ -77,7 +75,7 @@ export default function DataUpdateLogPopup({ onClose }) {
     );
     onClose(false);
   };
-  //=========================================================================================
+  // ================================================================================================================
 
   return (
     <div className={styles.dataUpdateLogPopup}>

@@ -16,10 +16,11 @@ export default function EditUserInfo() {
   const userInfo = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
 
+  // 효과음 ==========================================================================================================
   const [move] = useSound("/sounds/move.wav", { volume: 1 });
+  // ================================================================================================================
 
-  // 회원가입 여부와 회원정보 리덕스에 저장  =======================================
-
+  // 로그인 여부와 변경 회원정보 리덕스에 저장  ========================================================================
   const getAccessToken = () => {
     axios
       .get(`https://reloading.co.kr/api/users/accesstoken`, {
@@ -35,21 +36,20 @@ export default function EditUserInfo() {
         console.log(error);
       });
   };
+  // ================================================================================================================
 
-  // ======================================================================
-
-  // loading ===========================
-
+  // loading ========================================================================================================
   const override = {
     display: "block",
     margin: "auto",
   };
 
   const [loading, setLoading] = useState(false);
-  // ===================================
+  // ================================================================================================================
 
   const navigate = useNavigate();
 
+  // 입력값 상태 =====================================================================================================
   const [inputValue, setInputValue] = useState({
     id: userInfo.userInfo.id, //. 순서 이거 될까
     // validId: false,
@@ -70,19 +70,13 @@ export default function EditUserInfo() {
     profileImage: userInfo.userInfo.profile_image,
     // agree: false,
   });
+  // ================================================================================================================
 
-  // 시진파일 URL get
+  // 사진파일 URL get ===============================================================================================
   const [uploadLoading, setUploadLoading] = useState(false);
+  // ================================================================================================================
 
-  // const getImgUrl = (e) => {
-  //   setUploadLoading(true);
-  //   uploadImage(e.target.files && e.target.files[0]).then((url) => {
-  //     setInputValue((prevState) => ({ ...prevState, profileImage: url }));
-  //     setUploadLoading(false);
-  //   });
-  // };
-
-  // 정규식 모음 객체
+  // 정규식 모음 객체 =================================================================================================
   const inputRegexs = {
     // // 아이디 : 문자로 시작하여, 영문자, 숫자, 하이픈(-), 언더바(_)를 사용하여 3~20자 이내
     // idRegex: /^[a-zA-Z][a-zA-Z0-9_-]{2,19}$/,
@@ -92,10 +86,35 @@ export default function EditUserInfo() {
     nicknameRegex: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
   };
 
+  // 경고문구 상태 관리 =================================================================================================
+  // 조건에 부합하지 않는 경우 빨간글씨 경고
+  const [alertMessage, setAlertMessage] = useState({
+    id: "",
+    currentPw: "본인인증 후 수정이 가능합니다.",
+    pw: "",
+    pwCheck: "",
+    nickname: "",
+    email: "",
+    agree: "",
+  });
+  // ================================================================================================================
+
+  // 조건에 부합할 경우 초록글씨 경고
+  const [passMessage, setPassMessage] = useState({
+    id: "아이디는 변경할 수 없습니다.",
+    currentPw: "",
+    pw: "",
+    pwCheck: "",
+    nickname: "",
+    email: "",
+    agree: "",
+  });
+
   const [capsLockMessage, setCapsLockMessage] = useState({
     pw: "",
     pwCheck: "",
   });
+  // ================================================================================================================
 
   const detectCapsLock = (e) => {
     if (e.getModifierState("CapsLock")) {
@@ -115,7 +134,10 @@ export default function EditUserInfo() {
     }
   };
 
-  // 입력값 검증(추후 성능 테스트하여 useEffect나 useCallback 으로 리팩토링 고려 )
+  // ================================================================================================================
+  // ================================================================================================================
+  // 입력값 핸들링 및 경고문구 ========================================================================================
+  // (추후 성능 테스트하여 useEffect나 useCallback 으로 리팩토링 고려 )
   const handleInputValue = (e) => {
     switch (e.target.name) {
       // ID 입력값 검증 =====================================================================================
@@ -375,28 +397,9 @@ export default function EditUserInfo() {
       // ===================================================================================================
     }
   };
-
-  // 입력 조건 (정규식)설명 텍스트
-  const REGEX_INFO = {
-    id: [
-      "계정 정책",
-      "- 영문자로 시작",
-      "- 대/소문자 무관",
-      "- 영문자, 숫자, 하이픈(-), 언더바(_)를 사용 가능",
-      "- 3~20자 이내",
-    ],
-    pw: [
-      "비밀번호 정책",
-      "- 최소 8자 이상",
-      "- 최소한 하나의 대문자, 하나의 소문자, 하나의 숫자, 하나의 특수문자를 포함",
-      "- 공백은 허용하지 않음",
-    ],
-    nickname: [
-      "닉네임 정책",
-      "- 영어 대/소문자, 숫자, 한글 자모음 조합",
-      "- 2~10자 이내",
-    ],
-  };
+  // ================================================================================================================
+  // ================================================================================================================
+  // ================================================================================================================
 
   /**
    * 고려할 사항
@@ -409,6 +412,7 @@ export default function EditUserInfo() {
    * 7. (이메일 인증이 미실시 또는 실패한 경우)
    */
 
+  // 비빌변호 변경 시도가 감지되지 않은 경우 사용하는 제출 버튼 활성화 조건 ======================================
   const submitRequirementsWithoutPw = // 아래 조건을 모두 충족할 시 제출 버튼 활성화.
     // inputValue.id && // 아이디가 입력되었는가?
     // inputValue.validId && // 아이디가 정규식에 부합하는가?
@@ -426,7 +430,9 @@ export default function EditUserInfo() {
     inputValue.emailAddress && // 이메일 도메인 주소를  선택하였는가?
     inputValue.validEmail; // 이메일이 인증되었는가? (추후 리팩토링 예정)
   // inputValue.agree; // 정보제공에 동의 하였는가
+  // ================================================================================================================
 
+  // 비빌변호 변경 시도가 감지된 경우 사용하는 제출 버튼 활성화 조건 =====================================================
   const submitRequirementsWithPw = // 아래 조건을 모두 충족할 시 제출 버튼 활성화.
     // inputValue.id && // 아이디가 입력되었는가?
     // inputValue.validId && // 아이디가 정규식에 부합하는가?
@@ -444,52 +450,19 @@ export default function EditUserInfo() {
     inputValue.emailAddress && // 이메일 도메인 주소를  선택하였는가?
     inputValue.validEmail; // 이메일이 인증되었는가? (추후 리팩토링 예정)
   // inputValue.agree; // 정보제공에 동의 하였는가
+  // ================================================================================================================
 
-  // 조건에 부합하지 않는 경우 빨간글씨 경고
-  const [alertMessage, setAlertMessage] = useState({
-    id: "",
-    currentPw: "본인인증 후 수정이 가능합니다.",
-    pw: "",
-    pwCheck: "",
-    nickname: "",
-    email: "",
-    agree: "",
-  });
+  // ================================================================================================================
+  // 닉네임 중복확인 통과한 이후에 다시 수정할 경우 대비 ================================================================
+  useEffect(() => {
+    setInputValue((prevState) => ({
+      ...prevState,
+      nonNicknameDuplication: false,
+    }));
+  }, [inputValue.nickname]);
+  // ================================================================================================================
 
-  // 조건에 부합할 경우 초록글씨 경고
-  const [passMessage, setPassMessage] = useState({
-    id: "아이디는 변경할 수 없습니다.",
-    currentPw: "",
-    pw: "",
-    pwCheck: "",
-    nickname: "",
-    email: "",
-    agree: "",
-  });
-
-  // 중복확인 통과한 이후에 다시 수정할 경우 대비
-  // useEffect(() => {
-  //   setInputValue((prevState) => ({ ...prevState, nonIdDuplication: false }));
-  // }, [inputValue.id]);
-
-  // useEffect(() => {
-  //   setInputValue((prevState) => ({
-  //     ...prevState,
-  //     nonNicknameDuplication: false,
-  //   }));
-  // }, [inputValue.nickname]);
-
-  const [modalToggle, setModalToggle] = useState(false);
-
-  const handleOpenEmailModal = () => {
-    if (!inputValue.emailId) return alert("이메일 이이디를 입력해주세요.");
-    if (!inputValue.emailAddress) return alert("이메일 도메인을 선택해주세요.");
-    setModalToggle(true);
-    move();
-  };
-
-  //test zone ==========================================================
-
+  // 본인인증 =========================================================================================================
   const authenticate = () => {
     axios
       .post(`https://reloading.co.kr/api/users/pwCheck`, {
@@ -531,63 +504,9 @@ export default function EditUserInfo() {
         }));
       });
   };
+  // ================================================================================================================
 
-  const dupIdToggle = () => {
-    axios
-      .post(`https://reloading.co.kr/api/users/idCheck`, {
-        // url: "/users/idCheck", // 안되는뎅
-        method: "POST",
-        withCredentials: true,
-        data: {
-          inputId: inputValue.id, // 생략 가능하지만 혼동 방지를 위해서 비생략.
-        },
-      })
-      .then((response) => {
-        alert("이미 사용중인 아이디 입니다.");
-        setInputValue({
-          ...inputValue,
-          nonIdDuplication: false,
-        });
-        setAlertMessage((prevState) => ({
-          ...prevState,
-          id: "이미 사용중인 아이디 입니다.",
-        }));
-        setPassMessage((prevState) => ({
-          ...prevState,
-          id: "",
-        }));
-      })
-      .catch((error) => {
-        if (inputValue.validId) {
-          alert("사용할 수 있는 아이디 입니다.");
-          setInputValue({
-            ...inputValue,
-            nonIdDuplication: true,
-          });
-          setPassMessage((prevState) => ({
-            ...prevState,
-            id: "사용할 수 있는 아이디 입니다.",
-          }));
-          setAlertMessage((prevState) => ({
-            ...prevState,
-            id: "",
-          }));
-        } else {
-          alert("사용할 수 없는 아이디 입니다.");
-          setAlertMessage((prevState) => ({
-            ...prevState,
-            id: "사용할 수 없는 아이디 입니다.",
-          }));
-          setPassMessage((prevState) => ({
-            ...prevState,
-            id: "",
-          }));
-        }
-        // setAlertMessage("존재하지 않는 계정입니다.");
-        // console.log("에러코드", error.response.status, error.response.data);
-      });
-  };
-
+  // 닉네임 중복 확인=================================================================================================
   const dupNicknameToggle = () => {
     axios
       .post(`https://reloading.co.kr/api/users/nicknameCheck`, {
@@ -639,30 +558,11 @@ export default function EditUserInfo() {
             nickname: "",
           }));
         }
-        // setAlertMessage("존재하지 않는 계정입니다.");
-        // console.log("에러코드", error.response.status, error.response.data);
       });
   };
+  // ================================================================================================================
 
-  // const [inputValue, setInputValue] = useState({
-  //   id: userInfo.userInfo.id, //. 순서 이거 될까
-  //   currentPw: "",
-  //   authenticationStatus: false,
-  //   pw: "",
-  //   validPw: false,
-  //   pwCheck: "",
-  //   correctPwCheck: false,
-  //   name: "",
-  //   nickname: "",
-  //   validNickname: false,
-  //   nonNicknameDuplication: true, //  nickname 이 있으면 false줄거임
-  //   emailId: "",
-  //   emailAddress: "",
-  //   validEmail: true, // 추후 리팩토링 예정
-  //   profileImage: "",
-  //   // agree: false,
-  // });
-
+  // 변경 제출 =======================================================================================================
   const handleSubmit = () => {
     setLoading(true);
     axios
@@ -685,15 +585,16 @@ export default function EditUserInfo() {
       });
   };
 
-  //test tool end=======================================================
+  // ================================================================================================================
 
+  // 도메인 선택 드롭바 ===============================================================================================
   //select =============================================
   const [sortVisible, setSortVisible] = useState(false);
   const [selectedSort, setSelectedSort] = useState(
     userInfo && userInfo.userInfo && userInfo.userInfo.email.split("@")[1]
   );
-
   // ===================================================
+
   // select ============================================
   const handleSelectSort = (e) => {
     setSelectedSort(e.target.innerText);
@@ -701,22 +602,7 @@ export default function EditUserInfo() {
     // 이메일 도메인 변경이 감지되면, validEmaild을 false로 바꿔서 제출이 막히게 함.
     setInputValue((prevState) => ({ ...prevState, validEmail: false }));
   };
-
-  // -------===========================================
-  //이메일 선택 옵션 ======================================
-  const EMAIL_DOMAINS = [
-    { label: "gmail.com", value: "@gmail.com" },
-    { label: "naver.com", value: "@naver.com" },
-    { label: "daum.net", value: "@daum.net" },
-    { label: "hanmail.net", value: "@hanmail.net" },
-    { label: "hotmail.com", value: "@hotmail.com" },
-    { label: "yahoo.com", value: "@yahoo.com" },
-    { label: "nate.com", value: "@nate.com" },
-    { label: "kakao.com", value: "@kakao.com" },
-    // { label: "icloud.com", value: "@icloud.com" },
-    // { label: "outlook.com", value: "@outlook.com" },
-  ];
-  //======================================================
+  // ===================================================
 
   useEffect(() => {
     const selectedObj = EMAIL_DOMAINS.find(
@@ -729,9 +615,20 @@ export default function EditUserInfo() {
       }));
     }
   }, [selectedSort]);
+  // ================================================================================================================
 
-  const [showEditorModal, setShowEditorModal] = useState(false);
-  // =========================================================
+  // 이메일 인증 모달 =================================================================================================
+  const [modalToggle, setModalToggle] = useState(false);
+
+  const handleOpenEmailModal = () => {
+    if (!inputValue.emailId) return alert("이메일 이이디를 입력해주세요.");
+    if (!inputValue.emailAddress) return alert("이메일 도메인을 선택해주세요.");
+    setModalToggle(true);
+    move();
+  };
+  // ================================================================================================================
+
+  // input태그 클릭시 정책 보이도록  ===================================================================================
   const [visibleRegexInfo, setVisibleRegexInfo] = useState({
     id: false,
     pw: false,
@@ -752,8 +649,11 @@ export default function EditUserInfo() {
         setVisibleRegexInfo(() => ({ id: false, pw: false, nickname: false }));
     }
   };
+  // ================================================================================================================
 
-  // =========================================================
+  //사진편진 에디터 토글===============================================================================================
+  const [showEditorModal, setShowEditorModal] = useState(false);
+  // ================================================================================================================
   return (
     <div className={styles.mainContainer}>
       <div className={styles.subContainer}>
@@ -1096,20 +996,6 @@ export default function EditUserInfo() {
                 >
                   사진 선택
                 </button>
-                {/* 파일 선택 버튼 역할 */}
-                {/* <label htmlFor='file'>
-                  <span>파일 찾기</span>
-                </label>
-                {inputValue.authenticationStatus ? (
-                  <input // 실제로 업로드를 해주는 input 택그
-                    type='file'
-                    id='file'
-                    onChange={getImgUrl}
-                    name='profileImage'
-                  />
-                ) : (
-                  ""
-                )} */}
               </div>
               {/* test ============================== */}
             </div>
@@ -1161,3 +1047,42 @@ export default function EditUserInfo() {
     </div>
   );
 }
+
+// ================================================================================================================
+// 입력 조건 (정규식)설명 텍스트 ====================================================================================
+const REGEX_INFO = {
+  id: [
+    "계정 정책",
+    "- 영문자로 시작",
+    "- 대/소문자 무관",
+    "- 영문자, 숫자, 하이픈(-), 언더바(_)를 사용 가능",
+    "- 3~20자 이내",
+  ],
+  pw: [
+    "비밀번호 정책",
+    "- 최소 8자 이상",
+    "- 최소한 하나의 대문자, 하나의 소문자, 하나의 숫자, 하나의 특수문자를 포함",
+    "- 공백은 허용하지 않음",
+  ],
+  nickname: [
+    "닉네임 정책",
+    "- 영어 대/소문자, 숫자, 한글 자모음 조합",
+    "- 2~10자 이내",
+  ],
+};
+// ================================================================================================================
+
+//이메일 선택 옵션 =================================================================================================
+const EMAIL_DOMAINS = [
+  { label: "gmail.com", value: "@gmail.com" },
+  { label: "naver.com", value: "@naver.com" },
+  { label: "daum.net", value: "@daum.net" },
+  { label: "hanmail.net", value: "@hanmail.net" },
+  { label: "hotmail.com", value: "@hotmail.com" },
+  { label: "yahoo.com", value: "@yahoo.com" },
+  { label: "nate.com", value: "@nate.com" },
+  { label: "kakao.com", value: "@kakao.com" },
+  // { label: "icloud.com", value: "@icloud.com" },
+  // { label: "outlook.com", value: "@outlook.com" },
+];
+// ================================================================================================================

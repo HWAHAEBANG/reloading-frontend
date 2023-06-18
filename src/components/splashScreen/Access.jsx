@@ -6,17 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Access() {
+  // 효과 끝난 뒤에 홈으로 이동할 수 있도록 타이머 설정 ===============================================================
   const navigate = useNavigate();
-
-  const userInfo = useSelector((state) => state.userInfo);
-
-  // const [isFirstVisit, setIsFirstVisit] = useState(
-  //   userInfo && userInfo.userInfo.today_visit_cnt <= 1
-  // );
 
   setTimeout(() => {
     navigate("/");
   }, 9000);
+  // ================================================================================================================
+
+  const userInfo = useSelector((state) => state.userInfo);
 
   return (
     <div className={styles.mainContainer}>

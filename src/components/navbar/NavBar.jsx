@@ -9,11 +9,7 @@ import { FaUserCircle, FaUserEdit } from "react-icons/fa";
 import { IoIosCafe, IoIosHome, IoIosPeople } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import { ImNewspaper } from "react-icons/im";
-import {
-  AiOutlineBarChart,
-  AiFillNotification,
-  AiTwotoneNotification,
-} from "react-icons/ai";
+import { AiOutlineBarChart, AiFillNotification } from "react-icons/ai";
 import { RiMailCheckLine, RiMailCloseLine } from "react-icons/ri";
 import { MdFiberNew } from "react-icons/md";
 
@@ -28,18 +24,27 @@ export default function NavBar({
   setShowNav,
   setVisibleSuggestModal,
 }) {
+  // 효과음 =========================================================================================================
+  const [move] = useSound("/sounds/move.wav", { volume: 1 });
+  const [grow] = useSound("/sounds/grow.wav", { volume: 1 });
+  // ================================================================================================================
+
+  // 자동 닫기 관련 ==================================================================================================
   const [autoClose, setAutoClose] = useState(true);
 
   const handleChecked = (e) => {
     setAutoClose(e.target.checked);
   };
+  // ================================================================================================================
 
+  // 메뉴 들어 갈 때만 효과음  ========================================================================================
   //autoClose가 true일 때, 버튼누르면 setShowNav(false)로
   const handleEnter = (e) => {
     const textContent = e.currentTarget.querySelector("p")
       ? e.currentTarget.querySelector("p").textContent
       : "nothing";
 
+    // All Charts랑 My Charts는 효과는 하나 더 추가
     if (textContent === "All Charts" || textContent === "My Charts") {
       setTimeout(() => {
         grow();
@@ -48,10 +53,12 @@ export default function NavBar({
     move();
     autoClose && setShowNav(false);
   };
+  // ================================================================================================================
 
-  // 로그아웃 =====================
+  // 로그아웃 ======================================================================================================
   const navigate = useNavigate();
 
+  // 로직상 쓰일 일이 없겠지만 만일의 대비
   const enter = () => {
     navigate("/users/login");
   };
@@ -75,11 +82,13 @@ export default function NavBar({
         navigate("/users/login");
       });
   };
+  // ================================================================================================================
 
+  // 이메일 알림 서비스 ===============================================================================================
   const [toggleEmailBtn, setToggleEmailBtn] = useState(
     userInfo.userInfo.email_service_enabled
   );
-
+  // 이메일 알림 서비스 끄기 ===============================
   const handleClickEmailUnactive = () => {
     axios
       .post(`https://reloading.co.kr/api/users/emailServiceDisabled`, {
@@ -95,7 +104,8 @@ export default function NavBar({
         //엑세트 토큰 새로 받아와야하나? 정보수정에서 어떻게 했었지? ui에는 티 안나니까 상관없나?상관없을듯
       });
   };
-
+  // =====================================================
+  // 이메일 알림 서비스 켜기===============================
   const handleClickEmailActive = () => {
     axios
       .post(`https://reloading.co.kr/api/users/emailServiceEnabled`, {
@@ -113,7 +123,10 @@ export default function NavBar({
         //엑세트 토큰 새로 받아와야하나? 정보수정에서 어떻게 했었지? ui에는 티 안나니까 상관없나?상관없을듯
       });
   };
+  // =====================================================
+  // ================================================================================================================
 
+  // 오늘 방문자 수, 총 방문자 수 가져오기 =============================================================================
   const [visitorCnt, setVisitorCnt] = useState();
   useEffect(() => {
     axios
@@ -127,11 +140,8 @@ export default function NavBar({
         console.log(error);
       });
   }, []);
+  // ================================================================================================================
 
-  // sound ======
-  const [move] = useSound("/sounds/move.wav", { volume: 1 });
-  const [grow] = useSound("/sounds/grow.wav", { volume: 1 });
-  // sound ======
   return (
     <div
       className={`${styles.mainContainer} ${
@@ -160,7 +170,6 @@ export default function NavBar({
                       userInfo.userInfo.profile_image) ||
                     process.env.PUBLIC_URL + "/image/unknown.png"
                   }
-                  // src={process.env.PUBLIC_URL + "/image/HHB.jpg"}
                   alt='프로필 사진'
                 />
               </div>

@@ -11,30 +11,27 @@ import FindIdModal from "../find-id-modal/FindIdModal";
 import FindPwModal from "../find-pw-modal/FindPwModal";
 
 export default function GlitchSplashScreen() {
-  // input 태그 자동 포커스 ===============
+  // 효과음 ==========================================================================================================
+  const [keyboard] = useSound("/sounds/keyboard.wav", { volume: 1 });
+  const [wrong] = useSound("/sounds/wrong.mp3", { volume: 1 });
+  const [faidIn] = useSound("/sounds/faidin.mp3", { volume: 1 });
+  const [access] = useSound("/sounds/access.mp3", { volume: 1 });
+  const [disk] = useSound("/sounds/disk.wav", { volume: 1 });
+  const [move] = useSound("/sounds/move.wav", { volume: 1 });
+  // ================================================================================================================
+
+  // input 태그 자동 포커스 ==========================================================================================
   const idInputRef = useRef(null);
   const pwInputRef = useRef(null);
 
   useEffect(() => {
     idInputRef.current.focus();
   }, []);
-  // ===================================
-  const [alertMessage, setAlertMessage] = useState("");
+  // ================================================================================================================
 
-  const navigate = useNavigate();
-
+  // 아이디, 비밀번호 입력값 핸들링 ====================================================================================
   const [inputId, setInputId] = useState("");
   const [inputPw, setInputPw] = useState("");
-
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-
-  /** 굳이 한번 더 변수를 저장하는 이유 (보류)
-   * 아이디를 입력하고 엔터를 누른 뒤 빠르게 비밀 번호를 이어서 입력 할 경우,
-   * 비밀번호로 커서 넘어가기 전에 입력되어, 잘못 된 아이디가 전송됨.
-   * 이를 방지하기 위해, 엔터를 누르는 순간의 input 값을 저장해두도록 별도의 변수를 저장한것.
-   */
-  // const [finalInputValue, setFinalInputValue] = useState({ id: "", pw: "" });
 
   const handleInputId = (e) => {
     keyboard();
@@ -45,10 +42,14 @@ export default function GlitchSplashScreen() {
     keyboard();
     setInputPw(e.target.value);
   };
+  // ================================================================================================================
 
+  // 로그인 로직 =====================================================================================================
   const [existingId, setExistingId] = useState(false);
   const [correctPw, setCorrectPw] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
+  // 아이디 확인 함수 ====================================
   const handleSubmitId = () => {
     axios
       .post(`https://reloading.co.kr/api/users/idCheck`, {
@@ -61,7 +62,6 @@ export default function GlitchSplashScreen() {
       })
       .then((response) => {
         faidIn();
-        // console.log("존재하는 계정입니다.");
         setExistingId(true);
         pwInputRef.current.focus();
         setAlertMessage("");
@@ -72,7 +72,9 @@ export default function GlitchSplashScreen() {
         console.log("에러코드", error.response.status, error.response.data);
       });
   };
+  // ===================================================
 
+  // 비밀번호 확인 함수 ==================================
   const handleSubmitPw = () => {
     axios
       .post(`https://reloading.co.kr/api/users/pwCheck`, {
@@ -86,7 +88,6 @@ export default function GlitchSplashScreen() {
       .then((response) => {
         setAlertMessage("");
         getAccessToken();
-        // getRefreshToken(); 없어도 되지 않나
 
         setCorrectPw(true);
         setInputId(""); // 혹시 남아있을까봐
@@ -97,15 +98,21 @@ export default function GlitchSplashScreen() {
         setAlertMessage("비밀번호가 일치하지 않습니다.");
       });
   };
+  // ===================================================
 
+  // 아이디 확인 실행 ====================================
   const idCheck = (e) => {
     if (e.keyCode === 13) {
+      //enter 키
       handleSubmitId();
     }
   };
+  // ===================================================
 
+  // 비밀번호 확인 실행 ==================================
   const pwCheck = (e) => {
     if (e.keyCode === 13) {
+      //enter 키
       handleSubmitPw();
     }
     if (e.getModifierState("CapsLock")) {
@@ -114,7 +121,15 @@ export default function GlitchSplashScreen() {
       setAlertMessage();
     }
   };
-  // 회원가입 여부와 회원정보 리덕스에 저장  =======================================
+  // ===================================================
+  // ================================================================================================================
+
+  // 액세스톡큰에서  로그인 여부와 회원정보 가져와서 리덕스에 저장  =======================================================
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   const getAccessToken = () => {
     // 해쉬 안받아오도록 리팩토링 요망
     axios
@@ -145,9 +160,9 @@ export default function GlitchSplashScreen() {
         console.log(error);
       });
   };
+  // ================================================================================================================
 
-  // ======================================================================
-  // openMoadl==========================================================
+  // 아이디, 비밀번호 찾기 모달 토글 ===================================================================================
   const [findIdModalVisible, setFindIdModalVisible] = useState(false);
   const [findPwModalVisible, setFindPwModalVisible] = useState(false);
 
@@ -162,15 +177,7 @@ export default function GlitchSplashScreen() {
         break;
     }
   };
-  // ======================================================================
-  // sound effect =======================================================
-  const [keyboard] = useSound("/sounds/keyboard.wav", { volume: 1 });
-  const [wrong] = useSound("/sounds/wrong.mp3", { volume: 1 });
-  const [faidIn] = useSound("/sounds/faidin.mp3", { volume: 1 });
-  const [access] = useSound("/sounds/access.mp3", { volume: 1 });
-  const [disk] = useSound("/sounds/disk.wav", { volume: 1 });
-  const [move] = useSound("/sounds/move.wav", { volume: 1 });
-  // ======================================================================
+  // ================================================================================================================
 
   return (
     <div className={styles.mainContainer}>

@@ -46,8 +46,8 @@ export default function AboutUs() {
                   입니다.
                   <br />
                   <span>RE:LOADING</span>은 부동산 시장의 상황을 진단할 수 있는
-                  다양한 데이터를 분석하고 시각화하여 제공함으로써 재장전을
-                  지원하겠습니다.
+                  다양한 데이터를 분석하고 시각화하여 제공함으로써 여러분의
+                  재장전을 지원하겠습니다.
                 </p>
                 <p
                   className={`${styles.postScript1} ${

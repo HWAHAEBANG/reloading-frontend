@@ -17,6 +17,11 @@ const RECOMMEND_KEYWORD = [
 ];
 
 export default function TopicNews() {
+  // 효과음 ==========================================================================================================
+  const [toggle] = useSound("/sounds/toggle.wav", { volume: 1 });
+  const [keyboard] = useSound("/sounds/keyboard.wav", { volume: 1 });
+  // ================================================================================================================
+
   const [keyword, setKeyword] = useState("");
   const [selectedKeyword, setSelectedKeyword] = useState("");
   const [articles, setArticles] = useState([]);
@@ -26,13 +31,16 @@ export default function TopicNews() {
   const [selectedSort, setSelectedSort] = useState("정확도순");
   // ===================================================
 
+  // 메뉴 진입시 추천 키워드 중에서 램덤으로 한 개로 검색해줌 ===========================================================
   useEffect(() => {
     const randomIndex = Math.floor(
       (Math.random() * 10) % RECOMMEND_KEYWORD.length
     );
     setSelectedKeyword(RECOMMEND_KEYWORD[randomIndex]);
   }, []);
+  // ================================================================================================================
 
+  // 입력받은 키워드와 정렬 종류에 따른 뉴스 데이터 받아오기 =============================================================
   useEffect(() => {
     if (!selectedKeyword) return;
     axios
@@ -46,12 +54,16 @@ export default function TopicNews() {
         setArticles(response.data.data);
       });
   }, [selectedKeyword, selectedSort]);
+  // ================================================================================================================
 
+  // 입력값 핸들링 ===================================================================================================
   const handleKeyword = (e) => {
     keyboard();
     setKeyword(e.target.value);
   };
+  // ================================================================================================================
 
+  // 엔터키로 검색 가능토록 함 ========================================================================================
   const handleSubmit = (e) => {
     toggle();
     if (e.type === "keyup") {
@@ -60,18 +72,15 @@ export default function TopicNews() {
       setSelectedKeyword(keyword);
     }
   };
+  // ================================================================================================================
 
-  // select ====================================
+  // 정렬 선택시  ====================================================================================================
   const handleSelectSort = (e) => {
     toggle();
     setSelectedSort(e.target.innerText);
     setSortVisible((prev) => !prev);
   };
-  // -------====================================
-
-  const [toggle] = useSound("/sounds/toggle.wav", { volume: 1 });
-  const [keyboard] = useSound("/sounds/keyboard.wav", { volume: 1 });
-
+  // ================================================================================================================
   return (
     <div className={styles.mainContainer}>
       <div className={styles.subContainer}>

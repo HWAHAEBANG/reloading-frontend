@@ -6,13 +6,16 @@ import { setUserInfoAction } from "../../redux";
 import axios from "axios";
 
 export default function FirstVisitPopup({ onClose }) {
+  // 더보기 버튼 클릭시 about us 페이지로 이동 ======================================================================
   const navigate = useNavigate();
 
   const handleNavigate = () => {
     navigate("/aboutUs");
     onClose(false);
   };
-  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. =======================================
+  // ================================================================================================================
+
+  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. ================================================================
   // 이게 없을 경우 첫 방문시 새로고침 할때마다 모달이 뜸.
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
@@ -28,7 +31,7 @@ export default function FirstVisitPopup({ onClose }) {
     );
     onClose(false);
   };
-  //=========================================================================================
+  // ================================================================================================================
 
   return (
     <div className={styles.firstVisitPopup}>

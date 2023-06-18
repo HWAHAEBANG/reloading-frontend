@@ -16,11 +16,13 @@ import useSound from "use-sound";
 
 // 현재 서울 기준으로 하였음 추후 리팩토링 필요할 수도.
 export default function Dashboard() {
-  // fetch data ========================================
+  // sound ==========================================================================================================
+  const [disk] = useSound("/sounds/disk.wav", { volume: 1 });
+  // ================================================================================================================
+  // 모든 차트 받아오기 ===============================================================================================
   const userInfo = useSelector((state) => state.userInfo);
 
   const [chartsData, setChartsData] = useState();
-
   useEffect(() => {
     axios
       .get(`https://reloading.co.kr/api/allCharts`, {
@@ -40,8 +42,9 @@ export default function Dashboard() {
         console.error(error);
       });
   }, []);
+  // ================================================================================================================
 
-  // ===================================================
+  // 클릭시 디테일 페이지 이동 =========================================================================================
   const navigate = useNavigate();
 
   const enter = (e) => {
@@ -56,40 +59,32 @@ export default function Dashboard() {
       },
     });
   };
-
-  // sound ======
-  const [disk] = useSound("/sounds/disk.wav", { volume: 1 });
-
-  useEffect(() => {
-    disk();
-  }, []);
-  // sound ======
+  // ================================================================================================================
 
   return (
     <div className={styles.gridContainer}>
       <div
         id='amountAndPrice'
         onClick={enter}
-        // to='/allCharts/amountAndPrice'
         className={`${styles.box} ${styles.box6}`}
       >
         <AmountAndPrice />
       </div>
+
       <div
-        id='pir'
+        id='priceChangeRate'
         onClick={enter}
-        // to='/allCharts/pir'
-        className={`${styles.box} ${styles.box5}`}
+        className={`${styles.box} ${styles.box8}`}
       >
-        <Pir />
+        <PriceChangeRate />
       </div>
+
       <div
-        id='hai'
+        id='unsoldHouse'
         onClick={enter}
-        // to='/allCharts/hai'
-        className={`${styles.box} ${styles.box1}`}
+        className={`${styles.box} ${styles.box9}`}
       >
-        <Hai />
+        <UnsoldHouse />
       </div>
 
       {/* <div to='/allCharts' className={`${styles.box} ${styles.box4}`}>
@@ -99,39 +94,29 @@ export default function Dashboard() {
       <div
         id='spiderWeb'
         onClick={enter}
-        // to='/allCharts/spiderWeb'
         className={`${styles.box} ${styles.box2}`}
       >
         <SpiderWeb />
       </div>
+
       <div
         id='signal'
-        // onClick={enter}
-        // to='/allCharts/signal'
         className={`${styles.box} ${styles.box7} ${styles.nonClick}`}
       >
         <Signal chartsData={chartsData} />
       </div>
-      <div
-        id='priceChangeRate'
-        onClick={enter}
-        // to='/allCharts/priceChangeRate'
-        className={`${styles.box} ${styles.box8}`}
-      >
-        <PriceChangeRate />
+
+      <div id='pir' onClick={enter} className={`${styles.box} ${styles.box5}`}>
+        <Pir />
       </div>
-      <div
-        id='unsoldHouse'
-        onClick={enter}
-        // to='/allCharts/unsoldHouse'
-        className={`${styles.box} ${styles.box9}`}
-      >
-        <UnsoldHouse />
+
+      <div id='hai' onClick={enter} className={`${styles.box} ${styles.box1}`}>
+        <Hai />
       </div>
+
       <div
         id='jeonsePriceRatio'
         onClick={enter}
-        // to='/allCharts/jeonsePriceRatio'
         className={`${styles.box} ${styles.box10}`}
       >
         <JeonsePriceRatio />
@@ -140,7 +125,6 @@ export default function Dashboard() {
       <div
         id='gauge'
         onClick={enter}
-        // to='/allCharts/gauge'
         className={`${styles.box} ${styles.box3}`}
       >
         <Gauge />

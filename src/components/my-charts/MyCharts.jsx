@@ -8,17 +8,13 @@ import { useSelector } from "react-redux";
 import useSound from "use-sound";
 
 export default function MyCharts() {
-  // sound ======
+  // 효과음 =========================================================================================================
   const [keyboard] = useSound("/sounds/keyboard.wav", { volume: 1 });
   const [grow] = useSound("/sounds/grow.wav", { volume: 1 });
   const [toggle] = useSound("/sounds/toggle.wav", { volume: 1 });
+  // ===============================================================================================================
 
-  // useEffect(() => {
-  //   grow();
-  // }, []);
-  // sound ======
-
-  // fetch data ========================================
+  // 나의 차트 뎉이터 받아오기 =========================================================================================
   const userInfo = useSelector((state) => state.userInfo);
 
   const [chartsData, setChartsData] = useState();
@@ -40,11 +36,9 @@ export default function MyCharts() {
         console.error(error);
       });
   }, []);
+  // =================================================================================================================
 
-  // console.log("디비연결 이상무", chartsData);
-  // ===================================================
-  // sort filter ===================================== // 블로그 포스팅
-
+  // 정렬기능 ========================================================================================================= // 블로그 포스팅
   //select =============================================
   const [sortVisible, setSortVisible] = useState(false);
   const [selectedSort, setSelectedSort] = useState("조회수순");
@@ -78,18 +72,9 @@ export default function MyCharts() {
 
     return sortedData; // 정렬된 배열 반환
   };
+  // ================================================================================================================
 
-  // // sound ======
-  // const [keyboard] = useSound("/sounds/keyboard.wav", { volume: 0.25 });
-  // const [grow] = useSound("/sounds/grow.wav", { volume: 0.25 });
-  // const [toggle] = useSound("/sounds/toggle.wav", { volume: 0.25 });
-
-  // useEffect(() => {
-  //   grow();
-  // }, []);
-  // // sound ======
-
-  // search filter ===================================== // 블로그 포스팅
+  // 검색 기능 ======================================================================================================= // 블로그 포스팅
   const [keyword, setKeyword] = useState("");
   const handleKeyword = (e) => {
     keyboard();
@@ -114,7 +99,7 @@ export default function MyCharts() {
         )
       : setFilteredChartsData(sortSwitch(chartsData, selectedSort));
   }, [chartsData, keyword, selectedSort]);
-  // ===================================================
+  // ================================================================================================================
 
   return (
     <div className={styles.mainContainer}>

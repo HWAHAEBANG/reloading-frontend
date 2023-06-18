@@ -5,11 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserInfoAction } from "../../redux";
 
 export default function ImportantNotificationPopup({ onClose }) {
-  // const handleClose = () => {};
-
-  // const today = new Date().toISOString().slice(0, 10);
-  // console.log(today);
-
+  // 공지 데이터 받아와서 가장 최근 한개만 상태에 저장 ===================================================================
   const [notification, setNotification] = useState();
   useEffect(() => {
     axios
@@ -27,8 +23,9 @@ export default function ImportantNotificationPopup({ onClose }) {
         console.error(error);
       });
   }, []);
+  // ================================================================================================================
 
-  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. =======================================
+  // 오늘 더이상 보지 않기 위해 실행. DB애눈 번영안됨. =================================================================
   // 이게 없을 경우 첫 방문시 새로고침 할때마다 모달이 뜸.
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
@@ -44,7 +41,7 @@ export default function ImportantNotificationPopup({ onClose }) {
     );
     onClose(false);
   };
-  //=========================================================================================
+  //================================================================================================================
   return (
     <div className={styles.importantNotificationPopup}>
       <div className={styles.inner}>

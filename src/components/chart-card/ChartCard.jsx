@@ -11,6 +11,11 @@ export default function ChartCard({
   data,
   data: { id, thumbnail, title, subTitle, view_count: viewCount },
 }) {
+  // 효과음 ==========================================================================================================
+  const [toggle] = useSound("/sounds/toggle.wav", { volume: 1 });
+  // ================================================================================================================
+
+  // 클릭시 조회수 카운트 업 ==========================================================================================
   const navigate = useNavigate();
   const enter = () => {
     navigate(`/allCharts/${id}`, { state: { data: data } });
@@ -28,35 +33,14 @@ export default function ChartCard({
         console.log("에러코드", error.response.status, error.response.data);
       });
   };
+  // ================================================================================================================
 
-  // sound ======
-  const [toggle] = useSound("/sounds/toggle.wav", { volume: 1 });
-
-  // sound ======
-
+  // 하트 아이콘(나의 차트) 관련 이벤트 ================================================================================
   const userInfo = useSelector((state) => state.userInfo);
 
-  const [heart, setHeart] = useState(
-    data.isFavorite ? true : false
-
-    // 추후 시도
-    //   () => {
-    //   if (typeof window === "undefined") {
-    //     return false;
-    //   } else {
-    //     return JSON.parse(window.localStorage.getItem(`heartKey${id}`));
-    //   }
-    // }
-  );
-
-  // const [onLike, setOnLike] = useState(false);
-
-  // const handleOnLike = (e) => {
-  //   e.stopPropagation();
-  //   setOnLike((prev) => !prev);
-  // };
-
-  //test =========================================================
+  // 받아온 데이터에 따라 하트 아이콘 종류 결정
+  const [heart, setHeart] = useState(data.isFavorite ? true : false);
+  // 나의 차트 설정 =====================================
   const heartOn = (e) => {
     e.stopPropagation();
     if (userInfo.userInfo.id) {
@@ -80,7 +64,8 @@ export default function ChartCard({
       alert.error("My charts 에 추가하시려면 로그인을 해주세요. 😘");
     }
   };
-
+  // ===================================================
+  // 나의 차트 취소 =====================================
   const heartOff = (e) => {
     e.stopPropagation();
     if (userInfo.userInfo.id) {
@@ -107,12 +92,14 @@ export default function ChartCard({
       alert.error("My charts 에 삭제하시려면 로그인을 해주세요. 😘");
     }
   };
-  // ==============================================================
+  // ===================================================
+  // ================================================================================================================
 
   // 랜덤한 애니메이션 효과를 주기 위한 랜덤값 생성기
   const randomIndex = Math.floor((Math.random() * 10) % 5);
 
   return (
+    // 에니메이션을 랜덤하고 다양하게 주기위한 로직. //JSX에서는 switch문 사용 불가.
     <div
       onClick={enter}
       className={
@@ -142,7 +129,6 @@ export default function ChartCard({
       </div>
       <div className={styles.chartImgArea}>
         <img src={`${process.env.PUBLIC_URL} ${thumbnail}`} alt='' />
-        {/* "+" 필요없음 */}
       </div>
       <div className={styles.textArea}>
         <div className={styles.titleContainer}>

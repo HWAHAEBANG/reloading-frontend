@@ -12,29 +12,17 @@ export default function TopBar({
   setShowNav,
   setVisibleSuggestModal,
 }) {
-  const navigate = useNavigate();
-
-  const enter = () => {
-    navigate("/users/login");
-  };
-
+  // 로크아웃 버튼 클릭시 =============================================================================================
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const userInfo = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
 
-  // const [visitorCnt, setVisitorCnt] = useState();
-  // useEffect(() => {
-  //   axios
-  //     .get(`/users/visitorCnt`, {
-  //       withCredentials: true,
-  //     })
-  //     .then((response) => {
-  //       setVisitorCnt(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  const navigate = useNavigate();
+
+  // 로직상 사용될 일 없지만 만일 대비
+  const enter = () => {
+    navigate("/users/login");
+  };
 
   const logout = () => {
     axios
@@ -53,6 +41,7 @@ export default function TopBar({
         console.log(error);
       });
   };
+  // ================================================================================================================
 
   return (
     <div className={styles.container}>
@@ -76,15 +65,6 @@ export default function TopBar({
           />
         </a>
       </div>
-      {/* <div className={styles.visitCntBox}>
-        <p className={styles.visitCntTitle}>VISITORS</p>
-        <p className={styles.visitCnt}>
-          <span>TODAY </span>
-          {visitorCnt && visitorCnt.today}&nbsp;&nbsp;|&nbsp;&nbsp;
-          <span>TOTAL </span>
-          {visitorCnt && visitorCnt.total}
-        </p>
-      </div> */}
       <div>
         <button
           className={styles.suggestBtn}

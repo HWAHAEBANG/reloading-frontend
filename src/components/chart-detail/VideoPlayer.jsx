@@ -11,15 +11,11 @@ const VideoPlayer = ({ chartsData }) => {
   };
 
   return (
-    // <div className={styles.youtubeSection}>
-    //   {chartsData.youtubeUrl && (
     <YouTube
       videoId={chartsData.youtubeUrl}
       opts={opts}
       onReady={(event) => event.target.playVideo()}
     />
-    //   )}
-    // </div>
   );
 };
 

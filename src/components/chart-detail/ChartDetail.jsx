@@ -1,11 +1,10 @@
 import React, { useEffect, useState, Suspense, lazy } from "react";
 import styles from "./ChartDetail.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
 import { IoInformationCircleSharp, IoArrowBackCircle } from "react-icons/io5";
 import axios from "axios";
-import VideoPlayer from "./VideoPlayer";
 import YouTube from "react-youtube";
 
+// 컴포넌트(차트)를 동적으로 불러오기 위한 로직 =========================================================================
 const Pir = lazy(() => import("../../graph/Pir"));
 const Hai = lazy(() => import("../../graph/Hai"));
 const UnsoldHouse = lazy(() => import("../../graph/UnsoldHouse"));
@@ -25,15 +24,16 @@ const componentMapping = {
   spiderWeb: SpiderWeb,
   gauge: Gauge,
 };
+// ================================================================================================================
 
 export default function ChartDetail() {
-  // const navigate = useNavigate();
-
+  // 뒤로가기 버튼 ===================================================================================================
   const backToList = () => {
     window.history.go(-1); // 브라우저의 뒤로가기 동작 수행
-    // navigate("/allCharts");
   };
+  // ================================================================================================================
 
+  // 차트 아이디에 따른 차트 데이터 받아오기============================================================================
   const [chartsData, setChartsData] = useState();
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -54,8 +54,11 @@ export default function ChartDetail() {
         console.error(error);
       });
   }, []);
+  // ================================================================================================================
 
+  // 차트 데이터 받아왔으면 해당하는 컴포넌트 받아오기 ===================================================================
   const Component = chartsData && componentMapping[chartsData.id];
+  // ================================================================================================================
 
   return (
     <div className={styles.mainContainer}>
@@ -71,14 +74,7 @@ export default function ChartDetail() {
                 <Component />
               </Suspense>
             </div>
-            <div
-              className={
-                styles.desciptionArea
-                // chartsData.youtubeUrl
-                //   ? styles.desciptionArea
-                //   : styles.noYoutubeVerMobile
-              }
-            >
+            <div className={styles.desciptionArea}>
               <div
                 className={
                   chartsData.youtubeUrl
@@ -121,17 +117,6 @@ export default function ChartDetail() {
               {chartsData.youtubeUrl ? (
                 <div className={styles.youtubeSection}>
                   {chartsData.youtubeUrl ? (
-                    // <iframe
-                    //   id='player'
-                    //   type='text/html'
-                    //   width='100%'
-                    //   height='100%'
-                    //   src={`https://www.youtube.com/embed/${chartsData.youtubeUrl}?start=${chartsData.startSecond}`}
-                    //   frameBorder='0'
-                    //   title={chartsData.title}
-                    //   allowfullscreen
-                    // />
-                    // <VideoPlayer chartsData={chartsData} />
                     <YouTube
                       style={{ width: "100%", height: "100%" }}
                       videoId={chartsData.youtubeUrl}

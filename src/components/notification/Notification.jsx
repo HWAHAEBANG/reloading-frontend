@@ -8,7 +8,8 @@ export default function Notification() {
   const [dataUpdateLogList, setDataUpdateLogList] = useState();
   const [releaseNoteList, setReleaseNoteList] = useState();
 
-  // 컨텐츠 토글 관련 =======================================================================
+  // 컨텐츠 토글 관련  ===============================================================================================
+  // ========================================
   const [notificationPostBodyVisible, setNotificationPostBodyVisible] =
     useState([]);
 
@@ -17,7 +18,7 @@ export default function Notification() {
     changingArr[no - 1] = !changingArr[no - 1];
     setNotificationPostBodyVisible(changingArr);
   };
-  //=======================================================================
+  // ========================================
   const [dataUpdateLogPostBodyVisible, setDataUpdateLogPostBodyVisible] =
     useState([]);
 
@@ -26,8 +27,7 @@ export default function Notification() {
     changingArr[no - 1] = !changingArr[no - 1];
     setDataUpdateLogPostBodyVisible(changingArr);
   };
-  // =====================================================================
-
+  // ========================================
   const [releaseNotePostBodyVisible, setReleaseNotePostBodyVisible] = useState(
     []
   );
@@ -37,8 +37,10 @@ export default function Notification() {
     changingArr[no - 1] = !changingArr[no - 1];
     setReleaseNotePostBodyVisible(changingArr);
   };
-  //======================================================================================
+  // ========================================
+  // ================================================================================================================
 
+  // 데이터 받아오기 ==================================================================================================
   useEffect(() => {
     Promise.all([
       axios.get(`https://reloading.co.kr/api/notification/notification`, {
@@ -56,7 +58,7 @@ export default function Notification() {
         const dataUpdateLogResponse = responses[1];
         const releaseNoteResponse = responses[2];
 
-        //  데이터 업데이트 로그 파싱 로직 =======================================================
+        //  데이터 업데이트 로그 파싱 로직 ======================================
         const logList = dataUpdateLogResponse.data.data;
 
         let insertNo = 0;
@@ -76,7 +78,7 @@ export default function Notification() {
           }
           return acc;
         }, []);
-        // ==================================================================================
+        // =====================================================================
 
         // 데이터 저장
         setNotificationList(notificationResponse.data.data.reverse());
@@ -104,11 +106,13 @@ export default function Notification() {
         // setLoading(false);
       });
   }, []);
-  //글짜 길 시 흐르기 효과 ========================================================================================
+  // ================================================================================================================
+
+  //글짜 길 시 흐르기 효과 ============================================================================================
   const notiTextRefs = useRef([]);
   const updateTextRefs = useRef([]);
   const releaseTextRefs = useRef([]);
-
+  // ==========================================================
   useEffect(() => {
     if (!notificationList) return;
 
@@ -137,7 +141,8 @@ export default function Notification() {
       });
     }
   }, [notificationList]);
-
+  // ==========================================================
+  // ==========================================================
   useEffect(() => {
     if (!dataUpdateLogList) return;
 
@@ -166,7 +171,8 @@ export default function Notification() {
       });
     }
   }, [dataUpdateLogList]);
-
+  // ==========================================================
+  // ==========================================================
   useEffect(() => {
     if (!releaseNoteList) return;
 
@@ -195,7 +201,7 @@ export default function Notification() {
       });
     }
   }, [releaseNoteList]);
-
+  // ==========================================================
   //====================================================================================================
   return (
     <div className={styles.mainContainer}>

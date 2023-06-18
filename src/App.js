@@ -1,12 +1,8 @@
-// import "./App.css";
-import GlitchSplashScreen from "./components/splashScreen/GlitchSplashScreen";
-import InputId from "./components/login/InputId";
-import InputPw from "./components/login/InputPw";
 import { Outlet } from "react-router-dom";
 import TopBar from "./components/topbar/TopBar";
 import NavBar from "./components/navbar/NavBar";
 import styles from "./App.module.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import ImportantNotificationPopup from "./components/popups/ImportantNotificationPopup";
@@ -34,11 +30,6 @@ function App() {
     userInfo.userInfo.total_visit_cnt === 1
   );
 
-  //from DB
-  // const today = new Date()
-  //   .toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
-  //   .slice(0, 10);
-
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -61,9 +52,6 @@ function App() {
         const notificationResponse = responses[0];
         const dataUpdateLogResponse = responses[1];
 
-        console.log("흠", notificationResponse);
-        console.log("좀", dataUpdateLogResponse);
-
         // 데이터 저장
         setHasTodayNotification(
           notificationResponse.data.data.some(
@@ -75,12 +63,6 @@ function App() {
             (item) => item.created_at.split("T")[0] === formattedDate
           )
         );
-        console.log("투데이", formattedDate);
-        console.log("서버시간", new Date());
-        // console.log("확", notificationResponse.data.data);
-        // console.log("인", dataUpdateLogResponse.data.data);
-        // 추가 작업을 수행할 수 있습니다.
-        // setLoading(false);
       })
       .catch((error) => {
         // 에러 처리
@@ -89,16 +71,10 @@ function App() {
       });
   }, []);
 
-  console.log("뭐가", hasTodayDataUpdate);
-  console.log("다를까용?", hasTodayNotification);
-
-  const serverTime = new Date();
-  console.log("시발시간", serverTime);
   //=======================================================================
 
   return (
     <div className={styles.mainContainer}>
-      {/* <Particle /> */}
       <NavBar
         showNav={showNav}
         setShowNav={setShowNav}

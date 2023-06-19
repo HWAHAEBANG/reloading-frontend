@@ -36,7 +36,6 @@ export default function ImportantNotificationPopup({ onClose }) {
       setUserInfoAction({
         ...userInfo.userInfo,
         today_visit_cnt: userInfo.userInfo.today_visit_cnt + 1,
-        total_visit_cnt: userInfo.userInfo.total_visit_cnt + 1,
       })
     );
     onClose(false);

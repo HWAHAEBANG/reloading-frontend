@@ -7,7 +7,6 @@ export default function RegexInfoBoxForSignup({
   visibleRegexInfo,
   name,
 }) {
-  console.log(name, visibleRegexInfo[name]);
   return (
     <div className={styles.mainContainer}>
       <div className={visibleRegexInfo[name] ? styles.visible : styles.textBox}>

@@ -12,9 +12,12 @@ import { ImNewspaper } from "react-icons/im";
 import { AiOutlineBarChart, AiFillNotification } from "react-icons/ai";
 import { RiMailCheckLine, RiMailCloseLine } from "react-icons/ri";
 import { MdFiberNew } from "react-icons/md";
+import { ImArrowUpRight } from "react-icons/im";
+import { RxCross2 } from "react-icons/rx";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { setUserInfoAction } from "../../redux";
 import { logoutAction, clearUserInfoAction } from "../../redux";
 import axios from "axios";
 import useSound from "use-sound";
@@ -84,6 +87,25 @@ export default function NavBar({
   };
   // ================================================================================================================
 
+  // =================================================================================================================
+
+  const [showOverlay, setShowOverlay] = useState(
+    userInfo.userInfo.total_visit_cnt === 1
+  );
+
+  const handleOverlayClose = () => {
+    // getAccessToken();
+    dispatch(
+      setUserInfoAction({
+        ...userInfo.userInfo,
+        today_visit_cnt: userInfo.userInfo.today_visit_cnt + 1,
+        total_visit_cnt: userInfo.userInfo.total_visit_cnt + 1,
+      })
+    );
+    setShowOverlay(false);
+  };
+  // ================================================================================================================
+
   // 이메일 알림 서비스 ===============================================================================================
   const [toggleEmailBtn, setToggleEmailBtn] = useState(
     userInfo.userInfo.email_service_enabled
@@ -148,6 +170,23 @@ export default function NavBar({
         showNav ? styles.innerContainer : ""
       } scrollBar`}
     >
+      {showOverlay ? (
+        <div className={styles.onboardingOverlay}>
+          <p>
+            <div>
+              <RxCross2 onClick={handleOverlayClose} />
+              <ImArrowUpRight />
+            </div>
+            <br />
+            버튼을 클릭해 활성화하시면
+            <br />
+            데이터 입데이트 메일 알림 서비스를 <br />
+            이용하실 수 있습니다.
+          </p>
+        </div>
+      ) : (
+        ""
+      )}
       <div className={styles.userInfoSection}>
         <div className={styles.visitCntBox}>
           <p className={styles.visitCntTitle}>VISITORS</p>

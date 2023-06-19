@@ -114,7 +114,14 @@ export default function Signup() {
   const handleInputValue = (e) => {
     switch (e.target.name) {
       // ID 입력값 검증 =====================================================================================
+
       case "id":
+        setInputValue((prevState) => ({
+          // 입력 변동감지되면 중복여부, 정규식을 false로 바꿈
+          ...prevState,
+          validId: false,
+          nonIdDuplication: false,
+        }));
         // 정규식에 부합하는 경우
         if (inputRegexs.idRegex.test(e.target.value)) {
           setInputValue((prevState) => ({ ...prevState, validId: true })); //  ...prevState 꼭 블로그 포스팅
@@ -287,6 +294,12 @@ export default function Signup() {
       // ===================================================================================================
       // nickname 입력값 검증 ===============================================================================
       case "nickname":
+        setInputValue((prevState) => ({
+          // 입력 변동감지되면 중복여부, 정규식을 false로 바꿈
+          ...prevState,
+          validNickname: false,
+          nonNicknameDuplication: false,
+        }));
         // 정규식에 부합하는 경우
         if (inputRegexs.nicknameRegex.test(e.target.value)) {
           setInputValue((prevState) => ({
@@ -336,6 +349,13 @@ export default function Signup() {
           agree: e.target.checked,
         }));
         break;
+      case "emailId":
+        setInputValue((prevState) => ({
+          // 입력 변동감지되면 중복여부, 정규식을 false로 바꿈
+          ...prevState,
+          validEmail: false,
+        }));
+        break;
       // ===================================================================================================
       // 검증 불필요 항목 입력값 =============================================================================
       default:
@@ -380,16 +400,16 @@ export default function Signup() {
   // ================================================================================================================
 
   // 중복확인 통과한 이후에 다시 수정할 경우 대비 =======================================================================
-  useEffect(() => {
-    setInputValue((prevState) => ({ ...prevState, nonIdDuplication: false }));
-  }, [inputValue.id]);
+  // useEffect(() => { // 이제 필요없어진 로직. 입력값이 변경되면 거기서 false로 바꿔주기 때문.
+  //   setInputValue((prevState) => ({ ...prevState, nonIdDuplication: false }));
+  // }, [inputValue.id]);
 
-  useEffect(() => {
-    setInputValue((prevState) => ({
-      ...prevState,
-      nonNicknameDuplication: false,
-    }));
-  }, [inputValue.nickname]);
+  // useEffect(() => {
+  //   setInputValue((prevState) => ({
+  //     ...prevState,
+  //     nonNicknameDuplication: false,
+  //   }));
+  // }, [inputValue.nickname]);
   // ================================================================================================================
 
   // 아이디 중복 확인 =================================================================================================
@@ -537,6 +557,11 @@ export default function Signup() {
 
   // select ============================================
   const handleSelectSort = (e) => {
+    setInputValue((prevState) => ({
+      // 입력 변동감지되면 중복여부, 정규식을 false로 바꿈
+      ...prevState,
+      validEmail: false,
+    }));
     setSelectedSort(e.target.innerText);
     setSortVisible((prev) => !prev);
   };
@@ -859,7 +884,11 @@ export default function Signup() {
                 />
                 <button
                   className={styles.dupBtn}
-                  onClick={() => setShowEditorModal(true)}
+                  onClick={
+                    inputValue.authenticationStatus
+                      ? () => setShowEditorModal(true)
+                      : null
+                  }
                 >
                   사진 선택
                 </button>

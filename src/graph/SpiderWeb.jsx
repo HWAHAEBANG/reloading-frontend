@@ -156,13 +156,6 @@ export default function SpiderWeb() {
       });
   }, []);
 
-  // console.log(priceChangeRateData);
-  // console.log(transactionVolumeSalesSeoul);
-  // console.log(pirData);
-  // console.log(haiDataSeoul);
-  // console.log(unsoldHouseData);
-  // console.log(jeonsePriceRatioData);
-
   //====================================================
   // useEffect(() => {
   // 차트 생성 후 DOM에 추가

@@ -454,12 +454,12 @@ export default function EditUserInfo() {
 
   // ================================================================================================================
   // 닉네임 중복확인 통과한 이후에 다시 수정할 경우 대비 ================================================================
-  useEffect(() => {
-    setInputValue((prevState) => ({
-      ...prevState,
-      nonNicknameDuplication: false,
-    }));
-  }, [inputValue.nickname]);
+  // useEffect(() => { // 이제 필요없어진 로직. 입력값이 변경되면 거기서 false로 바꿔주기 때문.
+  //   setInputValue((prevState) => ({
+  //     ...prevState,
+  //     nonNicknameDuplication: false,
+  //   }));
+  // }, [inputValue.nickname]);
   // ================================================================================================================
 
   // 본인인증 =========================================================================================================
@@ -992,7 +992,11 @@ export default function EditUserInfo() {
                 />
                 <button
                   className={styles.dupBtn}
-                  onClick={() => setShowEditorModal(true)}
+                  onClick={
+                    inputValue.authenticationStatus
+                      ? () => setShowEditorModal(true)
+                      : null
+                  }
                 >
                   사진 선택
                 </button>

@@ -189,6 +189,41 @@ export default function GlitchSplashScreen() {
         }
       >
         <div className={styles.box}>
+          {/* 포트스잇 ========================================================================  */}
+          <div className={styles.postitContainer}>
+            <img
+              className={styles.postit}
+              src={process.env.PUBLIC_URL + "/image/postit.png"}
+              alt='포스트잇'
+            />
+            <p>
+              바쁜 시간 내시어 사이트에 방문 해주셔서
+              <br />
+              진심으로 감사드립니다.
+              <br />
+              회원가입이 번거로우시지 않도록
+              <br />
+              테스트 계정을 준비했습니다.
+              <br />
+              <br />
+              <span>
+                아이디 : HHB
+                <br />
+                비밀번호 : testUser1!
+              </span>
+              <br />
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(
+                대문자 U )
+              </span>
+              <br />
+              <br />
+              개선할 점을 조언해주신다면
+              <br />
+              바로 수정하도록하겠습니다. 감사합니다.
+            </p>
+          </div>
+          {/* ==================================================================================== */}
           <h2 className={styles.text}>RE LOADING</h2>
           <h3 className={styles.subText}>
             <span>R</span>eal <span>E</span>state Market Price Watchtower

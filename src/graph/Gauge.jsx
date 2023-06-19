@@ -117,11 +117,6 @@ export default function Gauge() {
       });
   }, []);
 
-  console.log("hai", haiDataSeoul);
-  console.log("pir", pirData);
-  console.log("양", transactionVolumeSalesSeoul);
-  console.log("지수", housePriceIndexData);
-
   //====================================================
 
   const options = {

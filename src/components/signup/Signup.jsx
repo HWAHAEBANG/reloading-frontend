@@ -354,6 +354,7 @@ export default function Signup() {
           // 입력 변동감지되면 중복여부, 정규식을 false로 바꿈
           ...prevState,
           validEmail: false,
+          emailId: e.target.value,
         }));
         break;
       // ===================================================================================================

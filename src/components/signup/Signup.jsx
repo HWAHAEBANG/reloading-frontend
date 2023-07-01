@@ -885,11 +885,7 @@ export default function Signup() {
                 />
                 <button
                   className={styles.dupBtn}
-                  onClick={
-                    inputValue.authenticationStatus
-                      ? () => setShowEditorModal(true)
-                      : null
-                  }
+                  onClick={() => setShowEditorModal(true)}
                 >
                   사진 선택
                 </button>

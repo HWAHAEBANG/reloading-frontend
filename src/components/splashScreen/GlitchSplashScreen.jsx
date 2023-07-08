@@ -207,7 +207,7 @@ export default function GlitchSplashScreen() {
               <br />
               <br />
               <span>
-                아이디 : HHB
+                아이디 : tester
                 <br />
                 비밀번호 : testUser1!
               </span>

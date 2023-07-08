@@ -23,17 +23,15 @@ JWT인증 및 인가 방식을 통해, 비 인가자의 접근을 제한한다. 
 <br/>
 <div align="center">
 <div>
-<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=Express&logoColor=white"/>
-<img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/>
+<img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=for-the-badge&logo=PostCSS&logoColor=black"/>
 </div>
 
 <div>
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
-</div>
-
-<div>
-<img src="https://img.shields.io/badge/Amazon AWS EC2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple">
 </div>
 
 </div>
@@ -163,44 +161,44 @@ useEffect(() => {
 }
 ```
 
-# 4.3 회원가입 유효성 검사
+## 4.3 회원가입 유효성 검사
 
 회원가입시 중복확인, 정규식 충족의 유효성 검사를 통과해야만 제출버튼이 활성화 되어 제출이 가능합니다.
 
-```
-  // 가입 제출 버튼 활성화 조건 ========================================================================================
-  /**
-   * 고려할 사항
-   * 1. 정규식에 부합하지 않는 아이디인 경우
-   * 2. 이미 존재하는 아이디인 경우
-   * 3. 정규식에 부합하지 않는 비밀번호인 경우
-   * 4. 비빌번호와 비빌번호환이 일치하지 않는 경우
-   * 5. 정규식에 부합하지 않는 닉네임인 경우
-   * 6. 이미 존재하는 닉네임인 경우
-   * 7. (이메일 인증이 미실시 또는 실패한 경우)
-   */
+```js
+// 가입 제출 버튼 활성화 조건 ========================================================================================
+/**
+ * 고려할 사항
+ * 1. 정규식에 부합하지 않는 아이디인 경우
+ * 2. 이미 존재하는 아이디인 경우
+ * 3. 정규식에 부합하지 않는 비밀번호인 경우
+ * 4. 비빌번호와 비빌번호환이 일치하지 않는 경우
+ * 5. 정규식에 부합하지 않는 닉네임인 경우
+ * 6. 이미 존재하는 닉네임인 경우
+ * 7. (이메일 인증이 미실시 또는 실패한 경우)
+ */
 
-  const submitRequirements = // 아래 조건을 모두 충족할 시 제출 버튼 활성화.
-    inputValue.id && // 아이디가 입력되었는가?
-    inputValue.validId && // 아이디가 정규식에 부합하는가?
-    inputValue.nonIdDuplication && // 아이디가 중복되지 않았는가?
-    inputValue.pw && // 비밀번호가 입력되었는가?
-    inputValue.validPw && // 비밀번호가 정규식에 부합하는가?
-    inputValue.pwCheck && // 비밀번호가 입력되었는가?
-    inputValue.correctPwCheck && // 비밀번호 확인이 비밀번호화 일치하는가?
-    inputValue.name && // 이름이 입력되었는가?
-    inputValue.nickname && // 닉네임이 입력되었는는가?
-    inputValue.nonNicknameDuplication && // 닉네입이 중복되지 않았는가?
-    inputValue.emailId && // 이메일 아이디를 입력하였는가?
-    inputValue.emailAddress && // 이메일 도메인 주소를  선택하였는가?
-    inputValue.validEmail && // 이메일이 인증되었는가? (추후 리팩토링 예정)
-    inputValue.agree; // 정보제공에 동의 하였는가
-  // ==============================================================================================================
+const submitRequirements = // 아래 조건을 모두 충족할 시 제출 버튼 활성화.
+  inputValue.id && // 아이디가 입력되었는가?
+  inputValue.validId && // 아이디가 정규식에 부합하는가?
+  inputValue.nonIdDuplication && // 아이디가 중복되지 않았는가?
+  inputValue.pw && // 비밀번호가 입력되었는가?
+  inputValue.validPw && // 비밀번호가 정규식에 부합하는가?
+  inputValue.pwCheck && // 비밀번호가 입력되었는가?
+  inputValue.correctPwCheck && // 비밀번호 확인이 비밀번호화 일치하는가?
+  inputValue.name && // 이름이 입력되었는가?
+  inputValue.nickname && // 닉네임이 입력되었는는가?
+  inputValue.nonNicknameDuplication && // 닉네입이 중복되지 않았는가?
+  inputValue.emailId && // 이메일 아이디를 입력하였는가?
+  inputValue.emailAddress && // 이메일 도메인 주소를  선택하였는가?
+  inputValue.validEmail && // 이메일이 인증되었는가? (추후 리팩토링 예정)
+  inputValue.agree; // 정보제공에 동의 하였는가
+// ==============================================================================================================
 ```
 
 <br/>
 
-# 4.4 조건 충족 신호등
+## 4.4 조건 충족 신호등
 
 특정 데이터들에 한해 데이트터를 실시간으로 비교하여, 시각적인 신호등 형태로 제공합니다. 데이터를 가져와 수치 자체를 특정 기준과 비교하거나, 두개의 데이터를 받아와 서로 비교하거나, 상승세 또는 하락제가 얼마의 기간동안 유지되는지를 제공하기위해, 복잡한 로직을 사용합니다. 해당 로직은 아래와 같습니다.
 
